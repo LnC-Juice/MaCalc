@@ -2,9 +2,18 @@
   "manifest_version": 3,
   "name": "MaCalc",
   "description": "Calculate your Mastery Tracker averages",
-  "version": "0.1",
+  "version": "1.0",
   "action": {
     "default_popup": "macalc.html",
     "default_icon": "macalc.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://app.masteryconnect.com/student/classes/*/progress",
+        "https://stem.instructure.com/*/external_tools/408*"
+      ],
+      "js": ["grade_average.js"]
+    }
+  ]
 }
