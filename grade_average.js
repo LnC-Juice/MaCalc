@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
 
 
     // letter 
-    let a = [...Array(400).keys()].slice(325);
+    let a = [...Array(401).keys()].slice(325);
     let b = [...Array(324).keys()].slice(250);
     let c = [...Array(249).keys()].slice(200);
     let d = [...Array(199).keys()].slice(150);
