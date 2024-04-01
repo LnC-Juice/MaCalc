@@ -21,20 +21,20 @@ window.addEventListener('load', function () {
 
     // letter 
     let a = [...Array(401).keys()].slice(325);
-    let b = [...Array(324).keys()].slice(250);
-    let c = [...Array(249).keys()].slice(200);
-    let d = [...Array(199).keys()].slice(150);
-    let f = [...Array(149).keys()];
+    let b = [...Array(325).keys()].slice(250);
+    let c = [...Array(250).keys()].slice(200);
+    let d = [...Array(200).keys()].slice(150);
+    let f = [...Array(150).keys()];
 
-    if (a.includes(score*100)) {
+    if (a.includes(parseInt(score*100))) {
         letter = 'A';
-    } else if (b.includes(score*100)) {
+    } else if (b.includes(parseInt(score*100))) {
         letter = 'B';
-    } else if (c.includes(score*100)) {
+    } else if (c.includes(parseInt(score*100))) {
         letter = 'C';
-    } else if (d.includes(score*100)) {
+    } else if (d.includes(parseInt(score*100))) {
         letter = 'D';
-    } else if (f.includes(score*100)) {
+    } else if (f.includes(parseInt(score*100))) {
         letter = 'F';
     } else {
         console.log('err in letter calc')
