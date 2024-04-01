@@ -1,5 +1,4 @@
-# Mastery Connect automated grade calculator
-## for SBL grading 
+# Mastery Connect automated grade calculator for SBL grading 
 
 
 The project is still in early stages and will be published on Chrome and Firefox as an extention.
