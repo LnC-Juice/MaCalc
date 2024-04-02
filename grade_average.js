@@ -4,7 +4,7 @@ let total = 0;
 const score_path = "#mastery_level_chart > h2"
 const letter_path = "#mastery_level_chart > h3"
 
-window.addEventListener('load', function () {
+window.addEventListener('pageshow', function () {
 
     for (let i of document.querySelectorAll(path)) {
     count += 1;
