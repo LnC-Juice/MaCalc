@@ -16,5 +16,7 @@
       "all_frames": true
     }
   ],
-  "permissions": ["activeTab"]
+  "host_permissions": [
+    "https://app.masteryconnect.com/student/classes/*/progress*"
+  ]
 }
