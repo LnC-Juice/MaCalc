@@ -1,8 +1,9 @@
 const path = "#content div.objective div.objective-assessments div.assessment-score span"
 let count = 0;
 let total = 0;
-const score_path = "#mastery_level_chart > h2"
-const letter_path = "#mastery_level_chart > h3"
+const ld_path = "#mastery_level_chart > h2";
+const sd_path = "#mastery_level_chart > h3";
+
 
 window.addEventListener('pageshow', function () {
 
@@ -13,10 +14,8 @@ window.addEventListener('pageshow', function () {
 
     // sbl score
     let score = (total/count).toFixed(2);
-    document.querySelector(score_path).innerHTML = score
-
-    document.querySelector(score_path).style.left = '15px'
-    document.querySelector(score_path).style.right = '35px'
+    let percent = ((total/(count*4)).toFixed(2))*100
+    
 
 
     // letter 
@@ -37,17 +36,53 @@ window.addEventListener('pageshow', function () {
     } else if (f.includes(parseInt(score*100))) {
         letter = 'F';
     } else {
-        console.log('err in letter calc')
-    }
+        console.log('err in letter calc');
+    };
 
-    document.querySelector(letter_path).innerHTML = letter
-    document.querySelector(letter_path).style.fontSize = '25px'
-    document.querySelector(letter_path).style.top = '100px'
+    // large display
+    chrome.storage.sync.get('large_display', function(data) {
+        let ld = (data.large_display);
+        console.log(ld)
+        
+        if (ld != 'default') {
+            if (ld == 'sbl') {
+                document.querySelector(ld_path).innerHTML = score;
+            } else if (ld == 'letter') {
+                document.querySelector(ld_path).innerHTML = letter;
+            } else if (ld == 'percent') {
+                document.querySelector(ld_path).innerHTML = percent + '%';
+            };
+            
+            document.querySelector(ld_path).style.left = '15px';
+            document.querySelector(ld_path).style.right = '35px';
+        };
+    });
 
 
+    // small display
+    chrome.storage.sync.get('small_display', function(data) {
+        let sd = (data.small_display);
+        console.log(sd)
+        if (sd != 'default') {
+            if (sd == 'letter') {
+                document.querySelector(sd_path).innerHTML = letter
+            } else if (sd == 'sbl') {
+                document.querySelector(sd_path).innerHTML = score
+            } else if (sd == 'percent') {
+                document.querySelector(sd_path).innerHTML = percent + '%';
+            } else if (sd == 'none') {
+                document.querySelector(sd_path).innerHTML = '';
+            }
+            
+            document.querySelector(sd_path).style.fontSize = '25px'
+            document.querySelector(sd_path).style.top = '100px'
+        };
+    });
     
+
+
+
+
 });
-
-
 
 

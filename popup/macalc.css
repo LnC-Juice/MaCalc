@@ -3,6 +3,7 @@
         --width: 350px;
         --height: 500px;
         --padding: 10px;
+        --padding2: 20px;
         --accent: rgb(57, 75, 88);
         --accent-text: rgb(255, 255, 255);
         --background: rgb(255, 255, 255);
@@ -13,9 +14,10 @@
         --width: 350px;
         --height: 500px;
         --padding: 10px;
-        --accent: rgb(123, 153, 175);
-        --accent-text: rgb(30, 30, 30);
-        --background: rgb(20, 20, 20);
+        --padding2: 20px;
+        --accent: rgb(47, 79, 79);
+        --accent-text: rgb(220, 220, 220);
+        --background: rgb(30, 30, 30);
     }
 } */
 
@@ -24,6 +26,7 @@
     --width: 350px;
     --height: 500px;
     --padding: 10px;
+    --padding2: 20px;
     --accent: rgb(57, 75, 88);
     --accent-text: rgb(255, 255, 255);
     --background: rgb(255, 255, 255);
@@ -44,6 +47,7 @@ header {
     display: block;
     background-color: var(--accent);
     width: calc(var(--width) - var(--padding)*2);
+    height: 75px;
     padding: var(--padding) var(--padding) calc(var(--padding)*2) var(--padding);
 }
 header h1 {
@@ -55,3 +59,23 @@ header h1 {
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.settings {
+    display: grid;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    margin: var(--padding2);
+    width: calc(var(--width) - var(--padding2)*2);
+    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2);
+}
+
+.settings label {
+    text-align: center;
+    font-size: 14pt;
+}
+
+
+
+

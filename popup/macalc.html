@@ -1,14 +1,46 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <title></title>
         <link rel="stylesheet" href="macalc.css">
+        <script src="macalc.js"></script>
     </head>
     <body>
         <header>
             <h1>Mastery Connect Calculator</h1>
         </header>
+        <div class="settings">
+
+
+            <!-- round switch -->
+            <!-- <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label> -->
+
+
+
+
+            <label for="ld">Large Display</label>
+            <select name="ld-setting" id="ld-setting">
+                <option value="sbl">SBL Grade</option>
+                <option value="letter">Letter Grade</option>
+                <option value="percent">Percent</option>
+                <option value="default">Default</option>
+            </select>
+            <br>
+            <label for="sd">Small Display</label>
+            <select name="sd-setting" id="sd-setting">
+                <option value="letter">Letter Grade</option>
+                <option value="sbl">SBL Grade</option>
+                <option value="percent">Percent</option>
+                <option value="default">Default</option>
+                <option value="none">None</option>
+            </select>
+            <br>
+            <button id="submit">Submit</button>
+        </div>
     </body>
 </html>
