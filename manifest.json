@@ -4,7 +4,7 @@
   "description": "Calculate your Mastery Tracker averages",
   "version": "0.2",
   "action": {
-    "default_popup": "macalc.html",
+    "default_popup": "popup/macalc.html",
     "default_icon": "macalc.png"
   },
 "content_scripts": [
