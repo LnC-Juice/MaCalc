@@ -1,4 +1,4 @@
-const path = "#content div.objective div.objective-assessments div.assessment-score span"
+const path = "#content div.objective div.objective-assessments div.assessment-score span";
 let count = 0;
 let total = 0;
 const ld_path = "#mastery_level_chart > h2";
@@ -14,7 +14,7 @@ window.addEventListener('pageshow', function () {
 
     // sbl score
     let score = (total/count).toFixed(2);
-    let percent = ((total/(count*4)).toFixed(2))*100
+    let percent = ((total/(count*4)).toFixed(2))*100;
     
 
 
@@ -42,9 +42,11 @@ window.addEventListener('pageshow', function () {
     // large display
     chrome.storage.sync.get('large_display', function(data) {
         let ld = (data.large_display);
-        console.log(ld)
-        
-        if (ld != 'default') {
+        if (ld == null) {
+            document.querySelector(ld_path).innerHTML = score;
+            document.querySelector(ld_path).style.left = '15px';
+            document.querySelector(ld_path).style.right = '35px';
+        } else if (ld != 'default') {
             if (ld == 'sbl') {
                 document.querySelector(ld_path).innerHTML = score;
             } else if (ld == 'letter') {
@@ -62,27 +64,25 @@ window.addEventListener('pageshow', function () {
     // small display
     chrome.storage.sync.get('small_display', function(data) {
         let sd = (data.small_display);
-        console.log(sd)
-        if (sd != 'default') {
+        if (sd == null) {
+            document.querySelector(sd_path).innerHTML = letter;
+            document.querySelector(sd_path).style.fontSize = '25px';
+            document.querySelector(sd_path).style.top = '100px';
+        } else if (sd != 'default') {
             if (sd == 'letter') {
-                document.querySelector(sd_path).innerHTML = letter
+                document.querySelector(sd_path).innerHTML = letter;
             } else if (sd == 'sbl') {
-                document.querySelector(sd_path).innerHTML = score
+                document.querySelector(sd_path).innerHTML = score;
             } else if (sd == 'percent') {
                 document.querySelector(sd_path).innerHTML = percent + '%';
             } else if (sd == 'none') {
                 document.querySelector(sd_path).innerHTML = '';
             }
             
-            document.querySelector(sd_path).style.fontSize = '25px'
-            document.querySelector(sd_path).style.top = '100px'
+            document.querySelector(sd_path).style.fontSize = '25px';
+            document.querySelector(sd_path).style.top = '100px';
         };
     });
-    
-
-
 
 
 });
-
-
