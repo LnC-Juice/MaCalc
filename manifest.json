@@ -15,5 +15,6 @@
       "js": ["grade_average.js"],
       "all_frames": true
     }
-  ]
+  ],
+  "permissions": ["activeTab"]
 }
