@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "MaCalc",
   "description": "Calculate your Mastery Tracker averages",
-  "version": "0.1",
+  "version": "0.2",
   "action": {
     "default_popup": "macalc.html",
     "default_icon": "macalc.png"
