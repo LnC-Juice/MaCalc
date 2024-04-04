@@ -1,12 +1,14 @@
-/* @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
     :root {
         --width: 350px;
         --height: 500px;
         --padding: 10px;
         --padding2: 20px;
+        --text: rgb(41, 41, 41);
         --accent: rgb(57, 75, 88);
-        --accent-text: rgb(255, 255, 255);
+        --text2: rgb(255, 255, 255);
         --background: rgb(255, 255, 255);
+        --invert-bool: '';
     }
 }
 @media (prefers-color-scheme: dark) {
@@ -15,22 +17,26 @@
         --height: 500px;
         --padding: 10px;
         --padding2: 20px;
-        --accent: rgb(47, 79, 79);
-        --accent-text: rgb(220, 220, 220);
+        --text: rgb(255, 255, 255);
+        --accent: rgb(57, 75, 88);
+        --text2: rgb(255, 255, 255);
         --background: rgb(30, 30, 30);
+        --invert-bool: invert();
     }
-} */
+}
 
 
-:root {
+/* :root {
     --width: 350px;
     --height: 500px;
     --padding: 10px;
     --padding2: 20px;
+    --text: rgb(41, 41, 41);
     --accent: rgb(57, 75, 88);
-    --accent-text: rgb(255, 255, 255);
+    --text2: rgb(255, 255, 255);
     --background: rgb(255, 255, 255);
-}
+    --invert-bool: '';
+} */
 
 
 html {
@@ -53,7 +59,7 @@ header {
 header h1 {
     text-align: center;
     font-size: 24pt;
-    color: var(--accent-text);
+    color: var(--text2);
     font-family: "Open Sans", sans-serif;
     font-weight: normal;
     margin-top: 0;
@@ -68,14 +74,39 @@ header h1 {
     justify-content: center;
     margin: var(--padding2);
     width: calc(var(--width) - var(--padding2)*2);
-    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2);
+    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2 - 100px);
 }
 
 .settings label {
+    color: var(--text);
     text-align: center;
     font-size: 14pt;
 }
 
 
+span.contacts {
+    display: flex;
+    margin: var(--padding2);
+    width: var();
+    height: calc(100px - var(--padding2));
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text)
+}
 
+.contacts svg {
+    filter: var(--invert-bool);
+    width: 30px;
+    height: 30px;
+}
 
+.contacts span {
+    display: flex;
+    align-items: center;
+}
+.contacts span svg {
+    padding: 10px;
+}
+.contacts a {
+    color: var(--text)
+}
