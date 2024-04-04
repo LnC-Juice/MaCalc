@@ -3,12 +3,6 @@
   "name": "MaCalc",
   "description": "Calculate your Mastery Tracker averages",
   "version": "0.3",
-  
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "frin.juice@gmail.com"
-    }
-  },
 
   "icons": {
     "128": "icons/macalc-128.png"
@@ -18,7 +12,7 @@
     "default_popup": "popup/macalc.html",
     "default_icon": "icons/macalc.png"
   },
-  
+
   "content_scripts": [
     {
       "matches": ["https://app.masteryconnect.com/student/classes/*/progress*"],
@@ -27,10 +21,14 @@
     }
   ],
 
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "host_permissions": [
     "https://app.masteryconnect.com/student/classes/*/progress*"
-  ]
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "macalc.frin.juice@gmail.com"
+    }
+  }
 }
