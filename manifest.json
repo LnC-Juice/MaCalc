@@ -4,12 +4,6 @@
   "name": "MaCalc",
   "description": "Calculate your Mastery Tracker averages",
   "version": "0.3",
-  
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "frin.juice@gmail.com"
-    }
-  },
 
   "icons": {
     "128": "icons/macalc-128.png"
