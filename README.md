@@ -6,7 +6,7 @@
 
 Now on Chrome Web Store! https://chromewebstore.google.com/detail/macalc/bjcmjpeefemnmadnmfjomhegfnmnefpd
 
-Now on Firefox addons! https://addons.mozilla.org/en-US/firefox/addon/macalc/
+Now on Firefox addons! https://addons.mozilla.org/en-US/firefox/addon/macalc/ (run on mastaryconnect website first)
 
 (published versions will typicaly be a version behind due to verifications done by Chrome and Firefox)
 
