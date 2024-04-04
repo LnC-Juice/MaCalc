@@ -1,7 +1,15 @@
 # Mastery Connect automated SBL grade calculator
 
 
-The project is still in early stages and will be published on Chrome and Firefox as an extention.
+**The project is still in early stages and will be published on Chrome and Firefox as an extention.**
+
+
+Now on Chrome Web Store! https://chromewebstore.google.com/detail/macalc/bjcmjpeefemnmadnmfjomhegfnmnefpd
+
+Now on Firefox addons! https://addons.mozilla.org/en-US/firefox/addon/macalc/
+
+(published versions will typicaly be a version behind due to verifications done by Chrome and Firefox)
+
 
 To use the product in its current state either:
 
