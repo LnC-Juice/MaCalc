@@ -1,20 +1,53 @@
-const path = "#content div.objective div.objective-assessments div.assessment-score span";
-let count = 0;
-let total = 0;
+const cat_path = "#content .objective-wrapper .objective";
+const score_path = "div.objective-assessments div.assessment-score span";
 const ld_path = "#mastery_level_chart > h2";
 const sd_path = "#mastery_level_chart > h3";
+let cat_score = [];
+let cat_percent = [];
+
+let score = 0;
+let total_score = 0;
+let score_count = 0;
+
+let percent = 0
+let percent_count = 0;
+let total_percent = 0
 
 
 window.addEventListener('pageshow', function () {
 
-    for (let i of document.querySelectorAll(path)) {
-    count += 1;
-    total += parseInt(i.textContent[0]);
+
+    for (let [c, element] of document.querySelectorAll(cat_path).entries()) {
+        c ++;
+        let count = 0;
+        let total = 0;
+        console.log(document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null)
+        if (document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null) {
+            for (let i of document.querySelectorAll(cat_path+':nth-of-type('+c+') '+score_path)) {
+                count += parseInt(i.textContent[i.textContent.length - 1]);
+                total += parseInt(i.textContent[0]);
+            };
+        cat_score.push(total/(count/4));
+        cat_percent.push((total/count)*100);
+        };
     };
 
-    // sbl score
-    let score = (total/count).toFixed(2);
-    let percent = ((total/(count*4)).toFixed(2))*100;
+
+
+
+    for (let i of cat_score) {
+        score_count ++;
+        total_score += parseFloat(i);
+    };
+    score = (total_score/score_count).toFixed(2);
+
+
+    for (let i of cat_percent) {
+        percent_count ++;
+        total_percent += parseFloat(i);
+    };
+    percent = (total_percent/percent_count).toFixed(2);
+
     
 
 
