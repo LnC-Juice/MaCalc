@@ -21,7 +21,6 @@ window.addEventListener('pageshow', function () {
         c ++;
         let count = 0;
         let total = 0;
-        console.log(document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null)
         if (document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null) {
             for (let i of document.querySelectorAll(cat_path+':nth-of-type('+c+') '+score_path)) {
                 count += parseInt(i.textContent[i.textContent.length - 1]);
@@ -46,7 +45,7 @@ window.addEventListener('pageshow', function () {
         percent_count ++;
         total_percent += parseFloat(i);
     };
-    percent = (total_percent/percent_count).toFixed(2);
+    percent = (total_percent/percent_count).toFixed(0);
 
     
 
