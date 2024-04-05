@@ -8,6 +8,9 @@ let score = 0;
 let total_score = 0;
 let score_count = 0;
 
+let letter = 0;
+let gpa = 0;
+
 
 window.addEventListener('pageshow', function () {
 
@@ -35,7 +38,7 @@ window.addEventListener('pageshow', function () {
 
 
 
-    // letter 
+    // letter & gpa
     let a = [...Array(401).keys()].slice(325);
     let b = [...Array(325).keys()].slice(250);
     let c = [...Array(250).keys()].slice(200);
@@ -44,30 +47,37 @@ window.addEventListener('pageshow', function () {
 
     if (a.includes(parseInt(score*100))) {
         letter = 'A';
+        gpa = 4;
     } else if (b.includes(parseInt(score*100))) {
         letter = 'B';
+        gpa = 3;
     } else if (c.includes(parseInt(score*100))) {
         letter = 'C';
+        gpa = 2;
     } else if (d.includes(parseInt(score*100))) {
         letter = 'D';
+        gpa = 1;
     } else if (f.includes(parseInt(score*100))) {
         letter = 'F';
+        gpa = 0;
     } else {
-        console.log('err in letter calc');
+        console.log('err in letter/gpa calc');
     };
 
     // large display
     chrome.storage.sync.get('large_display', function(data) {
         let ld = (data.large_display);
         if (ld == null) {
-            document.querySelector(ld_path).innerHTML = score;
+            document.querySelector(ld_path).textContent = score;
             document.querySelector(ld_path).style.left = '15px';
             document.querySelector(ld_path).style.right = '35px';
         } else if (ld != 'default') {
             if (ld == 'sbl') {
-                document.querySelector(ld_path).innerHTML = score;
+                document.querySelector(ld_path).textContent = score;
             } else if (ld == 'letter') {
-                document.querySelector(ld_path).innerHTML = letter;
+                document.querySelector(ld_path).textContent = letter;
+            } else if (ld == 'gpa') {
+                document.querySelector(ld_path).textContent = gpa;
             };
             
             document.querySelector(ld_path).style.left = '15px';
@@ -80,17 +90,19 @@ window.addEventListener('pageshow', function () {
     chrome.storage.sync.get('small_display', function(data) {
         let sd = (data.small_display);
         if (sd == null) {
-            document.querySelector(sd_path).innerHTML = letter;
+            document.querySelector(sd_path).textContent = letter;
             document.querySelector(sd_path).style.fontSize = '25px';
             document.querySelector(sd_path).style.top = '100px';
         } else if (sd != 'default') {
             if (sd == 'letter') {
-                document.querySelector(sd_path).innerHTML = letter;
+                document.querySelector(sd_path).textContent = letter;
             } else if (sd == 'sbl') {
-                document.querySelector(sd_path).innerHTML = score;
+                document.querySelector(sd_path).textContent = score;
+            } else if (sd == 'gpa') {
+                document.querySelector(sd_path).textContent = gpa;
             } else if (sd == 'none') {
-                document.querySelector(sd_path).innerHTML = '';
-            }
+                document.querySelector(sd_path).textContent = '';
+            };
             
             document.querySelector(sd_path).style.fontSize = '25px';
             document.querySelector(sd_path).style.top = '100px';
