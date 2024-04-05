@@ -1,21 +1,38 @@
-const path = "#content div.objective div.objective-assessments div.assessment-score span";
-let count = 0;
-let total = 0;
+const cat_path = "#content .objective-wrapper .objective";
+const score_path = "div.objective-assessments div.assessment-score span";
 const ld_path = "#mastery_level_chart > h2";
 const sd_path = "#mastery_level_chart > h3";
+let cat_score = [];
+
+let score = 0;
+let total_score = 0;
+let score_count = 0;
 
 
 window.addEventListener('pageshow', function () {
 
-    for (let i of document.querySelectorAll(path)) {
-    count += 1;
-    total += parseInt(i.textContent[0]);
+
+    for (let [c, element] of document.querySelectorAll(cat_path).entries()) {
+        c ++;
+        let count = 0;
+        let total = 0;
+        if (document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null) {
+            for (let i of document.querySelectorAll(cat_path+':nth-of-type('+c+') '+score_path)) {
+                count += parseInt(i.textContent[i.textContent.length - 1]);
+                total += parseInt(i.textContent[0]);
+            };
+        cat_score.push(total/(count/4));
+        };
     };
 
-    // sbl score
-    let score = (total/count).toFixed(2);
-    let percent = ((total/(count*4)).toFixed(2))*100;
-    
+
+
+    for (let i of cat_score) {
+        score_count ++;
+        total_score += parseFloat(i);
+    };
+    score = (total_score/score_count).toFixed(2);
+
 
 
     // letter 
@@ -51,8 +68,6 @@ window.addEventListener('pageshow', function () {
                 document.querySelector(ld_path).innerHTML = score;
             } else if (ld == 'letter') {
                 document.querySelector(ld_path).innerHTML = letter;
-            } else if (ld == 'percent') {
-                document.querySelector(ld_path).innerHTML = percent + '%';
             };
             
             document.querySelector(ld_path).style.left = '15px';
@@ -73,8 +88,6 @@ window.addEventListener('pageshow', function () {
                 document.querySelector(sd_path).innerHTML = letter;
             } else if (sd == 'sbl') {
                 document.querySelector(sd_path).innerHTML = score;
-            } else if (sd == 'percent') {
-                document.querySelector(sd_path).innerHTML = percent + '%';
             } else if (sd == 'none') {
                 document.querySelector(sd_path).innerHTML = '';
             }
@@ -83,6 +96,4 @@ window.addEventListener('pageshow', function () {
             document.querySelector(sd_path).style.top = '100px';
         };
     });
-
-
 });
