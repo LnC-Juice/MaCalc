@@ -3,15 +3,10 @@ const score_path = "div.objective-assessments div.assessment-score span";
 const ld_path = "#mastery_level_chart > h2";
 const sd_path = "#mastery_level_chart > h3";
 let cat_score = [];
-let cat_percent = [];
 
 let score = 0;
 let total_score = 0;
 let score_count = 0;
-
-let percent = 0
-let percent_count = 0;
-let total_percent = 0
 
 
 window.addEventListener('pageshow', function () {
@@ -27,10 +22,8 @@ window.addEventListener('pageshow', function () {
                 total += parseInt(i.textContent[0]);
             };
         cat_score.push(total/(count/4));
-        cat_percent.push((total/count)*100);
         };
     };
-
 
 
 
@@ -40,14 +33,6 @@ window.addEventListener('pageshow', function () {
     };
     score = (total_score/score_count).toFixed(2);
 
-
-    for (let i of cat_percent) {
-        percent_count ++;
-        total_percent += parseFloat(i);
-    };
-    percent = (total_percent/percent_count).toFixed(0);
-
-    
 
 
     // letter 
@@ -83,8 +68,6 @@ window.addEventListener('pageshow', function () {
                 document.querySelector(ld_path).innerHTML = score;
             } else if (ld == 'letter') {
                 document.querySelector(ld_path).innerHTML = letter;
-            } else if (ld == 'percent') {
-                document.querySelector(ld_path).innerHTML = percent + '%';
             };
             
             document.querySelector(ld_path).style.left = '15px';
@@ -105,8 +88,6 @@ window.addEventListener('pageshow', function () {
                 document.querySelector(sd_path).innerHTML = letter;
             } else if (sd == 'sbl') {
                 document.querySelector(sd_path).innerHTML = score;
-            } else if (sd == 'percent') {
-                document.querySelector(sd_path).innerHTML = percent + '%';
             } else if (sd == 'none') {
                 document.querySelector(sd_path).innerHTML = '';
             }
@@ -115,6 +96,4 @@ window.addEventListener('pageshow', function () {
             document.querySelector(sd_path).style.top = '100px';
         };
     });
-
-
 });
