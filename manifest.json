@@ -16,7 +16,10 @@
   
   "content_scripts": [
     {
-      "matches": ["https://app.masteryconnect.com/student/classes/*/progress*"],
+      "matches": [
+          "https://app.masteryconnect.com/student/classes/*/progress*",
+          
+      ],
       "js": ["grade_average.js"],
       "all_frames": true
     }
@@ -26,6 +29,7 @@
     "storage"
   ],
   "host_permissions": [
-    "https://app.masteryconnect.com/student/classes/*/progress*"
+    "https://app.masteryconnect.com/student/classes/*/progress*",
+    "https://app.masteryconnect.com/classrooms/*/students/*"
   ]
 }
