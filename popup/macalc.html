@@ -6,30 +6,40 @@
         <title></title>
         <link rel="stylesheet" href="macalc.css">
         <script src="macalc.js"></script>
+        <script src="popup.js"></script>
     </head>
     <body>
         <header>
             <h1>Mastery Connect Calculator</h1>
         </header>
-        <div class="settings">
-            <label for="ld">Large Display</label>
-            <select name="ld-setting" id="ld-setting">
-                <option value="sbl">SBL Grade</option>
-                <option value="letter">Letter Grade</option>
-                <option value="gpa">GPA</option>
-                <option value="default">Default</option>
-            </select>
-            <br>
-            <label for="sd">Small Display</label>
-            <select name="sd-setting" id="sd-setting">
-                <option value="letter">Letter Grade</option>
-                <option value="sbl">SBL Grade</option>
-                <option value="default">Default</option>
-                <option value="gpa">GPA</option>
-                <option value="none">None</option>
-            </select>
-            <br><br>
-            <button id="submit">Submit</button>
+        <nav>
+            <button id="back">back</button>
+        </nav>
+        <div id="content">
+            <div id="main">
+                <div id="settingsbutton"><p>Settings</p></div>
+                <div id="gradesallbutton"><p>View All Grades</p></div>
+            </div>
+            <div id="settings" class="mainhide">
+                <label for="ld">Large Display</label>
+                <select name="ld-setting" id="ld-setting">
+                    <option value="sbl">SBL Grade</option>
+                    <option value="letter">Letter Grade</option>
+                    <option value="gpa">GPA</option>
+                    <option value="default">Default</option>
+                </select>
+                <br>
+                <label for="sd">Small Display</label>
+                <select name="sd-setting" id="sd-setting">
+                    <option value="letter">Letter Grade</option>
+                    <option value="sbl">SBL Grade</option>
+                    <option value="default">Default</option>
+                    <option value="gpa">GPA</option>
+                    <option value="none">None</option>
+                </select>
+                <br><br>
+                <button id="submit">Submit</button>
+            </div>
         </div>
         <span class="contacts">
             <span>
