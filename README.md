@@ -1,6 +1,6 @@
 # Mastery Connect/Tracker automated SBL grader
 
-## Please Submit any issues you find to the isses page.
+## Please Submit any issues you find to the issues page.
 
 **The project is still in early stages.**
 
