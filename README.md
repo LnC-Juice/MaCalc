@@ -1,7 +1,8 @@
 # Mastery Connect/Tracker automated SBL grader
 
+## Please Submit any issues you find to the isses page.
 
-**The project is still in early stages. Submit bugs/new functions to the issues page.**
+**The project is still in early stages.**
 
 **Chromium:** https://chromewebstore.google.com/detail/macalc/bjcmjpeefemnmadnmfjomhegfnmnefpd
 
