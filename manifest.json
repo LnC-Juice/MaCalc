@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": [
-          "https://app.masteryconnect.com/student/classes"
+          "https://app.masteryconnect.com/student/classes*"
       ],
       "js": ["classes.js"],
       "all_frames": true

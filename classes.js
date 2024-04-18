@@ -227,6 +227,16 @@ window.addEventListener('pageshow', function () {
 
         });
     };
+
+    // add settings if
+    for (let i of document.querySelectorAll('ul.sortable')) {
+        i.style.transform = 'rotate(180deg)'
+    }
+    for (let i of document.querySelectorAll('ul.sortable > li')) {
+        i.style.transform = 'rotate(-180deg)'
+    }
+
+
 });
 
 

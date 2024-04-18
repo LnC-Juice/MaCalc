@@ -24,7 +24,8 @@ window.addEventListener('pageshow', function () {
                 count += parseInt(i.textContent[i.textContent.length - 1]);
                 total += parseInt(i.textContent[0]);
             };
-        cat_score.push(total/(count/4));
+            document.querySelector(cat_path+':nth-of-type('+c+') > .objective-mastery > .mastery-letter').textContent = (total/(count/4)).toFixed(2)
+            cat_score.push(total/(count/4));
         };
     };
 
@@ -76,8 +77,6 @@ window.addEventListener('pageshow', function () {
                 document.querySelector(ld_path).textContent = score;
             } else if (ld == 'letter') {
                 document.querySelector(ld_path).textContent = letter;
-            } else if (ld == 'gpa') {
-                document.querySelector(ld_path).textContent = gpa;
             };
             
             document.querySelector(ld_path).style.left = '15px';
@@ -98,8 +97,6 @@ window.addEventListener('pageshow', function () {
                 document.querySelector(sd_path).textContent = letter;
             } else if (sd == 'sbl') {
                 document.querySelector(sd_path).textContent = score;
-            } else if (sd == 'gpa') {
-                document.querySelector(sd_path).textContent = gpa;
             } else if (sd == 'none') {
                 document.querySelector(sd_path).textContent = '';
             };

@@ -10,22 +10,24 @@
     </head>
     <body>
         <header>
-            <h1>Mastery Connect Calculator</h1>
+            <h1>MaCalc</h1><h1>Settings</h1>
         </header>
         <nav>
             <button id="back">back</button>
         </nav>
         <div id="content">
             <div id="main">
-                <div id="settingsbutton"><p>Settings</p></div>
-                <div id="gradesallbutton"><p>View All Grades</p></div>
+                <div id="generalbuttom"><p>General</p></div>
+                <div id="progressbutton"><p>Progress</p></div>
             </div>
-            <div id="settings" class="mainhide">
+            <div id="general" class="mainhide">
+                <!-- TODO: darkmode, class list seperator, class list reverse -->
+            </div>
+            <div id="progress" class="mainhide">
                 <label for="ld">Large Display</label>
                 <select name="ld-setting" id="ld-setting">
                     <option value="sbl">SBL Grade</option>
                     <option value="letter">Letter Grade</option>
-                    <option value="gpa">GPA</option>
                     <option value="default">Default</option>
                 </select>
                 <br>
@@ -34,7 +36,6 @@
                     <option value="letter">Letter Grade</option>
                     <option value="sbl">SBL Grade</option>
                     <option value="default">Default</option>
-                    <option value="gpa">GPA</option>
                     <option value="none">None</option>
                 </select>
                 <br><br>

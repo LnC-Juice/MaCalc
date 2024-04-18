@@ -5,12 +5,12 @@ window.addEventListener('DOMContentLoaded', function () {
             document.getElementById('main').setAttribute('class','active');
         }
     });
-    document.getElementById('settingsbutton').addEventListener('click', function () {
+    document.getElementById('progressbutton').addEventListener('click', function () {
             document.getElementById('main').setAttribute('class', 'hidden');
-            document.getElementById('settings').setAttribute('class', document.getElementById('settings').getAttribute('class') + ' active');
+            document.getElementById('progress').setAttribute('class', document.getElementById('progress').getAttribute('class') + ' active');
     });
-    document.getElementById('gradesallbutton').addEventListener('click', function () {
+    document.getElementById('generalbuttom').addEventListener('click', function () {
         document.getElementById('main').setAttribute('class', 'hidden');
-        document.getElementById('gradesall').setAttribute('class', document.getElementById('gradesall').getAttribute('class') + ' active');
+        document.getElementById('general').setAttribute('class', document.getElementById('general').getAttribute('class') + ' active');
     });
 });
