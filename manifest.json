@@ -17,17 +17,17 @@
   "content_scripts": [
     {
       "matches": [
-          "https://app.masteryconnect.com/student/classes*"
+        "https://app.masteryconnect.com/student/classes/*/progress*",
+        "https://app.masteryconnect.com/classrooms/*/students/*"
       ],
-      "js": ["classes.js"],
+      "js": ["progress.js"],
       "all_frames": true
     },
     {
       "matches": [
-          "https://app.masteryconnect.com/student/classes/*/progress*",
-          "https://app.masteryconnect.com/classrooms/*/students/*"
+          "https://app.masteryconnect.com/student/classes*"
       ],
-      "js": ["progress.js"],
+      "js": ["classes.js"],
       "all_frames": true
     }
   ],
