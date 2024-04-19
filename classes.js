@@ -16,7 +16,7 @@ let percent = 0
 let percent_count = 0;
 let total_percent = 0
 
-let link = ''
+let link = '';
 
 
 
@@ -43,13 +43,13 @@ let parser = new DOMParser();
 window.addEventListener('pageshow', function () {
 
     for (let i of document.querySelectorAll('.preview_graph_container')) {
-        i.remove()
+        i.remove();
     }
 
 
 
     for (let i of document.querySelectorAll('#content .classroom > .classroom_details')) {
-        link = i.querySelector('a').href
+        link = i.querySelector('a').href;
 
         
 
@@ -59,63 +59,63 @@ window.addEventListener('pageshow', function () {
 
             
             let div = document.createElement('div')
-            div.setAttribute('class','score')
-            div.style.display = 'flex'
-            div.style.flexDirection = 'column'
-            div.style.alignItems = 'center'
-            div.style.justifyContent = 'center'
+            div.setAttribute('class','score');
+            div.style.display = 'flex';
+            div.style.flexDirection = 'column';
+            div.style.alignItems = 'center';
+            div.style.justifyContent = 'center';
 
-            div.style.width = '200px'
-            div.style.height = '100%'
-            div.style.position = 'absolute'
-            div.style.top = '0'
-            div.style.right = '0'
-            div.style.alignContent = 'center'
-
-
-
-            let barcontanier = document.createElement('div')
-            barcontanier.style.border = '1px solid #000'
-            barcontanier.style.borderRadius = '10px'
-            barcontanier.style.width = '150px'
-            barcontanier.style.height = '15px'
-            barcontanier.style.overflow = 'hidden'
+            div.style.width = '200px';
+            div.style.height = '100%';
+            div.style.position = 'absolute';
+            div.style.top = '0';
+            div.style.right = '0';
+            div.style.alignContent = 'center';
 
 
-            let bar_b = document.createElement('div')
-            bar_b.style.display = 'block'
-            bar_b.style.float = 'left'
-            bar_b.style.height = '15px'
-            bar_b.style.width = '0px'
-            bar_b.style.backgroundColor = '#1566b2'
 
-            let bar_g = document.createElement('div')
-            bar_g.style.display = 'block'
-            bar_g.style.float = 'left'
-            bar_g.style.height = '15px'
-            bar_g.style.width = '0px'
-            bar_g.style.backgroundColor = '#76bb00'
-
-            let bar_y = document.createElement('div')
-            bar_y.style.display = 'block'
-            bar_y.style.float = 'left'
-            bar_y.style.height = '15px'
-            bar_y.style.width = '0px'
-            bar_y.style.backgroundColor = '#f3cf00'
-
-            let bar_r = document.createElement('div')
-            bar_r.style.display = 'block'
-            bar_r.style.float = 'left'
-            bar_r.style.height = '15px'
-            bar_r.style.width = '0px'
-            bar_r.style.backgroundColor = '#e50900'
+            let barcontanier = document.createElement('div');
+            barcontanier.style.border = '1px solid #000';
+            barcontanier.style.borderRadius = '10px';
+            barcontanier.style.width = '150px';
+            barcontanier.style.height = '15px';
+            barcontanier.style.overflow = 'hidden';
 
 
+            let bar_b = document.createElement('div');
+            bar_b.style.display = 'block';
+            bar_b.style.float = 'left';
+            bar_b.style.height = '15px';
+            bar_b.style.width = '0px';
+            bar_b.style.backgroundColor = '#1566b2';
+
+            let bar_g = document.createElement('div');
+            bar_g.style.display = 'block';
+            bar_g.style.float = 'left';
+            bar_g.style.height = '15px';
+            bar_g.style.width = '0px';
+            bar_g.style.backgroundColor = '#76bb00';
+
+            let bar_y = document.createElement('div');
+            bar_y.style.display = 'block';
+            bar_y.style.float = 'left';
+            bar_y.style.height = '15px';
+            bar_y.style.width = '0px';
+            bar_y.style.backgroundColor = '#f3cf00';
+
+            let bar_r = document.createElement('div');
+            bar_r.style.display = 'block';
+            bar_r.style.float = 'left';
+            bar_r.style.height = '15px';
+            bar_r.style.width = '0px';
+            bar_r.style.backgroundColor = '#e50900';
 
 
 
 
-            classid = i.querySelector('a').href.slice(47)
+
+
+            classid = i.querySelector('a').href.slice(47);
 
             cat_score = [];
             cat_percent = [];
@@ -124,10 +124,10 @@ window.addEventListener('pageshow', function () {
             score_count = 0;
             percent = 0
             percent_count = 0;
-            total_percent = 0
+            total_percent = 0;
 
 
-            let page = parser.parseFromString(html, "text/html")
+            let page = parser.parseFromString(html, "text/html");
 
 
 
@@ -185,46 +185,46 @@ window.addEventListener('pageshow', function () {
             };
 
 
-            let h1 = document.createElement('h1')
-            let strong = document.createElement('strong')
+            let h1 = document.createElement('h1');
+            let strong = document.createElement('strong');
 
-            h1.style.fontSize = '30px'
+            h1.style.fontSize = '30px';
 
-            strong.textContent = score
-            h1.appendChild(strong)
-            div.appendChild(h1)
+            strong.textContent = score;
+            h1.appendChild(strong);
+            div.appendChild(h1);
 
 
             
-            bar_r.style.width = (score*150)+'px'
+            bar_r.style.width = (score*150)+'px';
             if ((score*150) > 150) {
-                bar_r.style.width = (150-(score*150-150))+'px'
-                bar_y.style.width = (score*150-150)+'px'
+                bar_r.style.width = (150-(score*150-150))+'px';
+                bar_y.style.width = (score*150-150)+'px';
 
                 if ((score*150) > 300) {
-                    bar_r.style.width = '0px'
-                    bar_y.style.width = (150-(score*150-300))+'px'
-                    bar_g.style.width = (score*150-300)+'px'
+                    bar_r.style.width = '0px';
+                    bar_y.style.width = (150-(score*150-300))+'px';
+                    bar_g.style.width = (score*150-300)+'px';
 
                     if ((score*150) > 450) {
-                        bar_y.style.width = '0px'
-                        bar_g.style.width = (150-(score*150-450))+'px'
-                        bar_b.style.width = (score*150-450)+'px'
+                        bar_y.style.width = '0px';
+                        bar_g.style.width = (150-(score*150-450))+'px';
+                        bar_b.style.width = (score*150-450)+'px';
             }}}
 
 
-            barcontanier.appendChild(bar_b)
-            barcontanier.appendChild(bar_g)
-            barcontanier.appendChild(bar_y)
-            barcontanier.appendChild(bar_r)
+            barcontanier.appendChild(bar_b);
+            barcontanier.appendChild(bar_g);
+            barcontanier.appendChild(bar_y);
+            barcontanier.appendChild(bar_r);
 
-            div.appendChild(barcontanier)
+            div.appendChild(barcontanier);
 
-            document.querySelector('#content #classroom_'+classid+'.classroom > .classroom_details').appendChild(div)
+            document.querySelector('#content #classroom_'+classid+'.classroom > .classroom_details').appendChild(div);
 
 
             for (let i = 1; i < document.querySelectorAll('.classroom').length; i += 2) {
-                document.querySelectorAll('.classroom')[i].style.backgroundColor = '#eee'
+                document.querySelectorAll('.classroom')[i].style.backgroundColor = '#eee';
             }
 
         });
@@ -232,10 +232,10 @@ window.addEventListener('pageshow', function () {
 
     // add settings if
     for (let i of document.querySelectorAll('ul.sortable')) {
-        i.style.transform = 'rotate(180deg)'
+        i.style.transform = 'rotate(180deg)';
     }
     for (let i of document.querySelectorAll('ul.sortable > li')) {
-        i.style.transform = 'rotate(-180deg)'
+        i.style.transform = 'rotate(-180deg)';
     }
 
 
