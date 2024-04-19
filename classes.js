@@ -185,14 +185,29 @@ window.addEventListener('pageshow', function () {
             };
 
 
+            let div_2 = document.createElement('div')
             let h1 = document.createElement('h1');
             let strong = document.createElement('strong');
+            let h1_2 = document.createElement('h1');
+            let strong_2 = document.createElement('strong');
 
-            h1.style.fontSize = '30px';
+            div_2.style.display = 'flex'
+            div_2.style.justifyContent = 'space-between'
+            div_2.style.width = '120px'
+
+            h1.style.fontSize = '25px';
+            h1_2.style.fontSize = '25px';
 
             strong.textContent = score;
+            strong_2.textContent = letter;
+
             h1.appendChild(strong);
-            div.appendChild(h1);
+            h1_2.appendChild(strong_2);
+
+            div_2.appendChild(h1);
+            div_2.appendChild(h1_2);
+
+            div.appendChild(div_2)
 
 
             
