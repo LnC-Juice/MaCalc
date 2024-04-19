@@ -1,3 +1,5 @@
+{
+
 const cat_path = "#content .objective-wrapper .objective";
 const score_path = "div.objective-assessments div.assessment-score span";
 const ld_path = "#mastery_level_chart > h2";
@@ -106,3 +108,6 @@ window.addEventListener('pageshow', function () {
         };
     });
 });
+
+
+}
