@@ -12,9 +12,13 @@ let score = 0;
 let total_score = 0;
 let score_count = 0;
 
-let percent = 0
+let percent = 0;
 let percent_count = 0;
-let total_percent = 0
+let total_percent = 0;
+
+let gpa = 0;
+let gpa_total = [];
+let gpa_f = 0;
 
 let link = '';
 
@@ -51,13 +55,10 @@ window.addEventListener('pageshow', function () {
     for (let i of document.querySelectorAll('#content .classroom > .classroom_details')) {
         link = i.querySelector('a').href;
 
-        
 
         get(link + '/progress', function (html) {
 
 
-
-            
             let div = document.createElement('div')
             div.setAttribute('class','score');
             div.style.display = 'flex';
@@ -122,7 +123,7 @@ window.addEventListener('pageshow', function () {
             score = 0;
             total_score = 0;
             score_count = 0;
-            percent = 0
+            percent = 0;
             percent_count = 0;
             total_percent = 0;
 
@@ -172,18 +173,24 @@ window.addEventListener('pageshow', function () {
 
             if (a.includes(parseInt(score*100))) {
                 letter = 'A';
+                gpa = 4;
             } else if (b.includes(parseInt(score*100))) {
                 letter = 'B';
+                gpa = 3;
             } else if (c.includes(parseInt(score*100))) {
                 letter = 'C';
+                gpa = 2;
             } else if (d.includes(parseInt(score*100))) {
                 letter = 'D';
+                gpa = 1;
             } else if (f.includes(parseInt(score*100))) {
                 letter = 'F';
+                gpa = 0;
             } else {
                 console.log('err in letter calc');
             };
 
+            gpa_total.push(gpa);
 
             let div_2 = document.createElement('div')
             let h1 = document.createElement('h1');
@@ -191,9 +198,11 @@ window.addEventListener('pageshow', function () {
             let h1_2 = document.createElement('h1');
             let strong_2 = document.createElement('strong');
 
-            div_2.style.display = 'flex'
-            div_2.style.justifyContent = 'space-between'
-            div_2.style.width = '120px'
+            div_2.style.display = 'flex';
+            div_2.style.justifyContent = 'space-between';
+            div_2.style.width = '120px';
+
+            h1_2.setAttribute('class', 'letter_score');
 
             h1.style.fontSize = '25px';
             h1_2.style.fontSize = '25px';
@@ -207,7 +216,7 @@ window.addEventListener('pageshow', function () {
             div_2.appendChild(h1);
             div_2.appendChild(h1_2);
 
-            div.appendChild(div_2)
+            div.appendChild(div_2);
 
 
             
@@ -241,9 +250,11 @@ window.addEventListener('pageshow', function () {
             for (let i = 1; i < document.querySelectorAll('.classroom').length; i += 2) {
                 document.querySelectorAll('.classroom')[i].style.backgroundColor = '#eee';
             }
-
         });
+
     };
+
+
 
     // add settings if
     for (let i of document.querySelectorAll('ul.sortable')) {
@@ -254,7 +265,135 @@ window.addEventListener('pageshow', function () {
     }
 
 
+    let gpa_status = document.createElement('div')
+    gpa_status.style.border = '1px solid #000';
+    gpa_status.style.borderRadius = '10px';
+    gpa_status.style.width = '300px';
+    gpa_status.style.height = '100%';
+    gpa_status.style.overflow = 'hidden';
+
+    let gpa_status_b = document.createElement('div')
+    gpa_status_b.style.display = 'block';
+    gpa_status_b.style.float = 'left';
+    gpa_status_b.style.width = '300px';
+    gpa_status_b.style.height = '100px';
+    gpa_status_b.style.backgroundColor = '#1566b2';
+
+    let gpa_status_g = document.createElement('div')
+    gpa_status_g.style.display = 'block';
+    gpa_status_g.style.float = 'left';
+    gpa_status_g.style.width = '300px';
+    gpa_status_g.style.height = '100px';
+    gpa_status_g.style.backgroundColor = '#76bb00';
+
+    let gpa_status_y = document.createElement('div')
+    gpa_status_y.style.display = 'block';
+    gpa_status_y.style.float = 'left';
+    gpa_status_y.style.width = '300px';
+    gpa_status_y.style.height = '100px';
+    gpa_status_y.style.backgroundColor = '#f3cf00';
+
+    let gpa_status_r = document.createElement('div')
+    gpa_status_r.style.display = 'block';
+    gpa_status_r.style.float = 'left';
+    gpa_status_r.style.width = '300px';
+    gpa_status_r.style.height = '100px';
+    gpa_status_r.style.backgroundColor = '#e50900';
+
+
+
+
+
+
+    if (gpa_total.length == document.querySelectorAll('#content .classroom > .classroom_details').length) {
+        console.log(gpa_total);
+    }
+
+    setTimeout(() => {
+        
+
+
+        for (let gpa_i of gpa_total) {
+            gpa_f += gpa_i;
+        }
+        gpa = (gpa_f/(gpa_total.length))*100;
+
+
+
+
+        gpa_status_r.style.height = (gpa)+'%';
+        if (gpa > 100) {
+            gpa_status_r.style.height = (100-(gpa))+'%';
+            gpa_status_y.style.height = (gpa-100)+'%';
+
+            if (gpa > 200) {
+                gpa_status_r.style.height = '0px';
+                gpa_status_y.style.height = (100-(gpa-100))+'%';
+                gpa_status_g.style.height = (gpa-200)+'%';
+
+                if (gpa > 30) {
+                    gpa_status_y.style.height = '0px';
+                    gpa_status_g.style.height = (100-(gpa-200))+'%';
+                    gpa_status_b.style.height = (gpa-300)+'%';
+        }}}
+
+
+
+
+
+
+
+        gpa_status.appendChild(gpa_status_b);
+        gpa_status.appendChild(gpa_status_g);
+        gpa_status.appendChild(gpa_status_y);
+        gpa_status.appendChild(gpa_status_r);
+    
+    
+    
+    
+    
+    
+        let h1_gpa = document.createElement('h1');
+        let h1_gpa_strong = document.createElement('strong');
+        let gpa_div = document.createElement('div');
+        
+        gpa_div.style.width = '300px';
+        gpa_div.style.height = 'auto';
+        gpa_div.style.display = 'grid';
+
+
+        h1_gpa.style.alignSelf = 'center';
+        h1_gpa.style.justifySelf = 'center';
+        h1_gpa.style.position = 'absolute';
+        h1_gpa.style.fontSize = '50px';
+
+
+        h1_gpa_strong.textContent = (gpa/100).toFixed(2);
+
+
+
+        document.getElementById('only_column').style.width = '70%';
+    
+        document.getElementById('content').style.display = 'flex';
+        document.getElementById('content').style.justifyContent = 'space-between';
+    
+        
+        
+        document.getElementById('main').style.margin = '12px 6vw';
+        document.getElementById('main').style.width = 'auto';
+    
+    
+    
+    
+        h1_gpa.appendChild(h1_gpa_strong);
+        gpa_div.appendChild(h1_gpa);
+        gpa_div.appendChild(gpa_status);
+        
+        document.getElementById('content').appendChild(gpa_div);
+
+    }, 1000);
+
 });
 
 
-}
+};
