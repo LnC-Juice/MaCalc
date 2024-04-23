@@ -10,10 +10,6 @@ let score = 0;
 let total_score = 0;
 let score_count = 0;
 
-let percent = 0;
-let percent_count = 0;
-let total_percent = 0;
-
 let gpa = 0;
 let gpa_total = [];
 let gpa_f = 0;
@@ -35,6 +31,7 @@ function get(url, callback) {
             // Remove <script> and <link> elements before parsing
             responseText = responseText.replace(/<script[\s\S]*?<\/script>/g, ""); // Remove all script tags
             responseText = responseText.replace(/<link[\s\S]*?>/g, ""); // Remove all link tags
+            responseText = responseText.replace(/<style[\s\S]*?<\/style>/g, ""); // Removing all style tags
             responseText = responseText.replace(/<img[\s\S]*?\/>/g, ""); // Remove all img tags
             responseText = responseText.replace(/<meta[\s\S]*?>/g, ""); // Remove all meta tags
             
@@ -69,6 +66,8 @@ class Batch {
         if (this.batch.length === 0) this.callback();
     }
 }
+
+
 
 
 window.addEventListener('pageshow', function () {
@@ -308,9 +307,6 @@ window.addEventListener('pageshow', function () {
             score = 0;
             total_score = 0;
             score_count = 0;
-            percent = 0;
-            percent_count = 0;
-            total_percent = 0;
 
 
 
@@ -341,12 +337,6 @@ window.addEventListener('pageshow', function () {
             };
             score = (total_score/score_count).toFixed(2);
 
-
-            for (let i of cat_percent) {
-                percent_count ++;
-                total_percent += parseFloat(i);
-            };
-            percent = (total_percent/percent_count).toFixed(2);
 
 
             // letter 
