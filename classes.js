@@ -197,16 +197,23 @@ window.addEventListener('pageshow', function () {
 
 
 
-        document.getElementById('only_column').style.width = '70%';
+        const wheel = {grid:'grid', none:'none'};
+        chrome.storage.sync.get('wheel_settings', function(data) {
+            let ws = (data.wheel_settings);
+            wheel[ws] ? ws : ws = 'grid';
+            gpa_div.style.display = wheel[ws];
+            
+            
+            if (wheel[ws] == 'grid') {
+                document.getElementById('only_column').style.width = '70%';
 
-        document.getElementById('content').style.display = 'flex';
-        document.getElementById('content').style.justifyContent = 'space-between';
+                document.getElementById('content').style.display = 'flex';
+                document.getElementById('content').style.justifyContent = 'space-between';
 
-        
-        
-        document.getElementById('main').style.margin = '12px 6vw';
-        document.getElementById('main').style.width = 'auto';
-
+                document.getElementById('main').style.margin = '12px 6vw';
+                document.getElementById('main').style.width = 'auto';
+            }
+        });
 
 
 
@@ -419,25 +426,38 @@ window.addEventListener('pageshow', function () {
             document.querySelector('#content #classroom_'+classid+'.classroom > .classroom_details').appendChild(div);
 
 
-            for (let i = 1; i < document.querySelectorAll('.classroom').length; i += 2) {
-                document.querySelectorAll('.classroom')[i].style.backgroundColor = '#eee';
-            }
+
             gradeRequests.remove(link);
         });
 
     };
     gradeRequests.remove("Start");
+    
+    
+    
+    const listflip = {'180':'180', '0':'0'};
+    chrome.storage.sync.get('listflip_settings', function(data) {
+        let lf = (data.listflip_settings);
+        listflip[lf] ? lf : lf = 180;
+        for (let i of document.querySelectorAll('ul.sortable')) {
+            i.style.transform = 'rotate('+listflip[lf]+'deg)';
+        }
+        for (let i of document.querySelectorAll('ul.sortable > li')) {
+            i.style.transform = 'rotate(-'+listflip[lf]+'deg)';
+        }
+        
+    });
+    
 
 
-
-    // add settings if
-    for (let i of document.querySelectorAll('ul.sortable')) {
-        i.style.transform = 'rotate(180deg)';
-    }
-    for (let i of document.querySelectorAll('ul.sortable > li')) {
-        i.style.transform = 'rotate(-180deg)';
-    }
-
+    const bandedcolor = {'#FFF':'#FFF', '#EEE':'#EEE'};
+    chrome.storage.sync.get('bandedcolor_settings', function(data) {
+        let bc = (data.bandedcolor_settings);
+        bandedcolor[bc] ? bc : bc = '#EEE';
+        for (let i = 1; i < document.querySelectorAll('.classroom').length; i += 2) {
+            document.querySelectorAll('.classroom')[i].style.backgroundColor = bandedcolor[bc];
+        }
+    });
 
 });
 

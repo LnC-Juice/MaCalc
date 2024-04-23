@@ -17,11 +17,29 @@
         </nav>
         <div id="content">
             <div id="main">
-                <div id="generalbuttom"><p>General</p></div>
+                <div id="classesbuttom"><p>General</p></div>
                 <div id="progressbutton"><p>Progress</p></div>
             </div>
-            <div id="general" class="mainhide">
-                <!-- TODO: darkmode, class list seperator, class list reverse -->
+            <div id="classes" class="mainhide">
+                <label for="wh">Wheel</label>
+                <select name="wh-setting" id="wh-setting">
+                    <option value="grid">Show</option>
+                    <option value="none">Hide</option>
+                </select>
+                <br>
+                <label for="lf">List Flip</label>
+                <select name="lf-setting" id="lf-setting">
+                    <option value="180">On</option>
+                    <option value="0">Off</option>
+                </select>
+                <br>
+                <label for="bc">Banded Color</label>
+                <select name="bc-setting" id="bc-setting">
+                    <option value="#EEE">On</option>
+                    <option value="#FFF">Off</option>
+                </select>
+                <br><br>
+                <button id="submit">Submit</button>
             </div>
             <div id="progress" class="mainhide">
                 <label for="ld">Large Display</label>
@@ -41,7 +59,7 @@
                     <option value="none">None</option>
                 </select>
                 <br><br>
-                <button id="submit">Submit</button>
+                <button id="submit1">Submit</button>
             </div>
         </div>
         <span class="contacts">

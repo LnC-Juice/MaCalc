@@ -9,8 +9,8 @@ window.addEventListener('DOMContentLoaded', function () {
             document.getElementById('main').setAttribute('class', 'hidden');
             document.getElementById('progress').setAttribute('class', document.getElementById('progress').getAttribute('class') + ' active');
     });
-    document.getElementById('generalbuttom').addEventListener('click', function () {
+    document.getElementById('classesbuttom').addEventListener('click', function () {
         document.getElementById('main').setAttribute('class', 'hidden');
-        document.getElementById('general').setAttribute('class', document.getElementById('general').getAttribute('class') + ' active');
+        document.getElementById('classes').setAttribute('class', document.getElementById('classes').getAttribute('class') + ' active');
     });
 });

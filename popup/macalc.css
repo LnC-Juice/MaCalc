@@ -89,7 +89,7 @@ nav {
     display: none;
 }
 
-#generalbuttom {
+#classesbuttom {
     cursor: pointer;
     width: 100px;
     height: 100px;
@@ -101,7 +101,7 @@ nav {
     margin: var(--padding)
 
 }
-#generalbuttom p {
+#classesbuttom p {
     color: #FFFFFF;
 }
 #generalbuttom:active {
@@ -114,10 +114,29 @@ nav {
     transition: all 200ms;
 }
 
-#general.mainhide {
-    display: none;
+
+#classesbuttom:active {
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent2);
+    text-align: center;
+    align-content: center;
+    box-shadow: 0px 0px 0em;
+    transition: all 200ms;
 }
 
+#classes.mainhide {
+    display: none;
+}
+#classes.active {
+    display: grid;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: calc(var(--width) - var(--padding2)*2);
+    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2 - 100px - 10px);
+}
 
 #progressbutton {
     cursor: pointer;
@@ -156,7 +175,7 @@ nav {
     height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2 - 100px - 10px);
 }
 
-#progress.active label {
+label {
     color: var(--text);
     text-align: center;
     font-size: 14pt;
