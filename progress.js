@@ -72,20 +72,25 @@ window.addEventListener('pageshow', function () {
     // large display
     chrome.storage.sync.get('large_display', function(data) {
         let ld = (data.large_display);
-        displays[ld] ? ld : ld = 'sbl';
-        document.querySelector(ld_path).style.left = '15px';
-        document.querySelector(ld_path).style.right = '35px';
-        document.querySelector(ld_path).textContent = displays[ld];
+        if (ld != 'default') {
+
+            displays[ld] ? ld : ld = 'sbl';
+            document.querySelector(ld_path).style.left = '15px';
+            document.querySelector(ld_path).style.right = '35px';
+            document.querySelector(ld_path).textContent = displays[ld];
+        }
     });
 
 
     // small display
     chrome.storage.sync.get('small_display', function(data) {
         let sd = (data.small_display);
-        displays[sd] ? sd : sd = 'letter';
-        document.querySelector(sd_path).style.fontSize = '25px';
-        document.querySelector(sd_path).style.top = '100px';
-        document.querySelector(sd_path).textContent = displays[sd];
+        if (sd != 'default') {
+            displays[sd] ? sd : sd = 'letter';
+            document.querySelector(sd_path).style.fontSize = '25px';
+            document.querySelector(sd_path).style.top = '100px';
+            document.querySelector(sd_path).textContent = displays[sd];
+        }
     });
 });
 
