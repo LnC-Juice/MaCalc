@@ -25,7 +25,8 @@
     },
     {
       "matches": [
-          "https://app.masteryconnect.com/student/classes*"
+          "https://app.masteryconnect.com/student/classes",
+          "https://app.masteryconnect.com/student/classes?*"
       ],
       "js": ["classes.js"],
       "all_frames": true
@@ -37,6 +38,7 @@
   ],
   "host_permissions": [
     "https://app.masteryconnect.com/student/classes/*/progress*",
-    "https://app.masteryconnect.com/classrooms/*/students/*"
+    "https://app.masteryconnect.com/classrooms/*/students/*",
+    "https://app.masteryconnect.com/student/classes"
   ]
 }
