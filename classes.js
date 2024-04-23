@@ -42,6 +42,23 @@ function get(url, callback) {
 let parser = new DOMParser();
 
 
+// Kind of a quick & easy way to write this, not at all the most efficient
+class Batch {
+    
+    constructor(callback) {
+        this.callback = callback;
+        this.batch = [];
+    }
+
+    add(id) {
+        this.batch.push(id);
+    }
+
+    remove(id) {
+        this.batch = this.batch.splice((this.batch.indexOf(id), 1))
+        if (this.batch.length === 0) this.callback();
+    }
+}
 
 
 window.addEventListener('pageshow', function () {
@@ -50,12 +67,139 @@ window.addEventListener('pageshow', function () {
         i.remove();
     }
 
+    let gpa_status = document.createElementNS("http://www.w3.org/2000/svg",'svg')
+    gpa_status.setAttribute('width','300px')
+    gpa_status.setAttribute('height','300px')
+    gpa_status.setAttribute('viewBox', '0 0 250 250')
+
+    let gpa_status_b = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_b.setAttribute('r', '100')
+    gpa_status_b.setAttribute('cx', '125')
+    gpa_status_b.setAttribute('cy', '125')
+    gpa_status_b.setAttribute('stroke', '#1566b2')
+    gpa_status_b.setAttribute('stroke-width', '30')
+    gpa_status_b.setAttribute('fill', 'none')
+    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+
+    let gpa_status_g = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_g.setAttribute('r', '100')
+    gpa_status_g.setAttribute('cx', '125')
+    gpa_status_g.setAttribute('cy', '125')
+    gpa_status_g.setAttribute('stroke', '#76bb00')
+    gpa_status_g.setAttribute('stroke-width', '30')
+    gpa_status_g.setAttribute('fill', 'none')
+    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+
+    let gpa_status_y = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_y.setAttribute('r', '100')
+    gpa_status_y.setAttribute('cx', '125')
+    gpa_status_y.setAttribute('cy', '125')
+    gpa_status_y.setAttribute('stroke', '#f3cf00')
+    gpa_status_y.setAttribute('stroke-width', '30')
+    gpa_status_y.setAttribute('fill', 'none')
+    gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+
+    let gpa_status_r = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_r.setAttribute('r', '100')
+    gpa_status_r.setAttribute('cx', '125')
+    gpa_status_r.setAttribute('cy', '125')
+    gpa_status_r.setAttribute('stroke', '#e50900')
+    gpa_status_r.setAttribute('stroke-width', '30')
+    gpa_status_r.setAttribute('fill', 'none')
+    gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+    
+    const gpaCallback = () => {
+            
+            
+            
+        for (let gpa_i of gpa_total) {
+            gpa_f += gpa_i;
+        }
+        gpa = (gpa_f/(gpa_total.length));
+        
+        
+        
+        // (Math.PI*100*2)*p
+        gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2)+' 0')
+        if (gpa > 1) {
+            gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+2)))
+            gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+2))+' '+(Math.PI*100*2*(gpa-1)))
+            gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-1))+' '+(Math.PI*100*2*(-gpa+2)))
+            
+            if (gpa > 2) {
+                gpa_status_r.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
+                gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+3)))
+                gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+3))+' '+(Math.PI*100*2*(gpa-2)))
+                gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
+                gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-2))+' '+(Math.PI*100*2*(-gpa+3)))
+                
+                if (gpa > 3) {
+                    gpa_status_y.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
+                    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+4)))
+                    gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+4))+' '+(Math.PI*100*2*(gpa-3)))
+                    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
+                    gpa_status_b.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-3))+' '+(Math.PI*100*2*(-gpa+4)))
+        }}}
 
 
+
+
+        gpa_status.appendChild(gpa_status_b);
+        gpa_status.appendChild(gpa_status_g);
+        gpa_status.appendChild(gpa_status_y);
+        gpa_status.appendChild(gpa_status_r);
+
+
+
+
+        let h1_gpa = document.createElement('h1');
+        let h1_gpa_strong = document.createElement('strong');
+        let gpa_div = document.createElement('div');
+        
+        gpa_div.style.paddingTop = '75px';
+        gpa_div.style.width = '300px';
+        gpa_div.style.height = '300px';
+        gpa_div.style.display = 'grid';
+
+
+        h1_gpa.style.alignSelf = 'center';
+        h1_gpa.style.justifySelf = 'center';
+        h1_gpa.style.position = 'absolute';
+        h1_gpa.style.fontSize = '50px';
+
+
+        h1_gpa_strong.style.fontWeight = '800'
+        h1_gpa_strong.textContent = gpa.toFixed(2);
+
+
+
+        document.getElementById('only_column').style.width = '70%';
+
+        document.getElementById('content').style.display = 'flex';
+        document.getElementById('content').style.justifyContent = 'space-between';
+
+        
+        
+        document.getElementById('main').style.margin = '12px 6vw';
+        document.getElementById('main').style.width = 'auto';
+
+
+
+
+        h1_gpa.appendChild(h1_gpa_strong);
+        gpa_div.appendChild(h1_gpa);
+        gpa_div.appendChild(gpa_status);
+        
+        document.getElementById('content').appendChild(gpa_div);
+
+    }
+
+    let gradeRequests = new Batch(gpaCallback);
+    gradeRequests.add("Start");
     for (let i of document.querySelectorAll('#content .classroom > .classroom_details')) {
         link = i.querySelector('a').href;
 
-
+        gradeRequests.add(link);
         get(link + '/progress', function (html) {
 
 
@@ -147,7 +291,10 @@ window.addEventListener('pageshow', function () {
             };
             
 
-            if (cat_score.length === 0) return;
+            if (cat_score.length === 0) {
+                gradeRequests.remove(link);
+                return;
+            }
 
             for (let i of cat_score) {
                 score_count ++;
@@ -250,9 +397,11 @@ window.addEventListener('pageshow', function () {
             for (let i = 1; i < document.querySelectorAll('.classroom').length; i += 2) {
                 document.querySelectorAll('.classroom')[i].style.backgroundColor = '#eee';
             }
+            gradeRequests.remove(link);
         });
 
     };
+    gradeRequests.remove("Start");
 
 
 
@@ -264,140 +413,6 @@ window.addEventListener('pageshow', function () {
         i.style.transform = 'rotate(-180deg)';
     }
 
-
-    let gpa_status = document.createElementNS("http://www.w3.org/2000/svg",'svg')
-    gpa_status.setAttribute('width','300px')
-    gpa_status.setAttribute('height','300px')
-    gpa_status.setAttribute('viewBox', '0 0 250 250')
-
-    let gpa_status_b = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_b.setAttribute('r', '100')
-    gpa_status_b.setAttribute('cx', '125')
-    gpa_status_b.setAttribute('cy', '125')
-    gpa_status_b.setAttribute('stroke', '#1566b2')
-    gpa_status_b.setAttribute('stroke-width', '30')
-    gpa_status_b.setAttribute('fill', 'none')
-    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
-
-    let gpa_status_g = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_g.setAttribute('r', '100')
-    gpa_status_g.setAttribute('cx', '125')
-    gpa_status_g.setAttribute('cy', '125')
-    gpa_status_g.setAttribute('stroke', '#76bb00')
-    gpa_status_g.setAttribute('stroke-width', '30')
-    gpa_status_g.setAttribute('fill', 'none')
-    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
-
-    let gpa_status_y = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_y.setAttribute('r', '100')
-    gpa_status_y.setAttribute('cx', '125')
-    gpa_status_y.setAttribute('cy', '125')
-    gpa_status_y.setAttribute('stroke', '#f3cf00')
-    gpa_status_y.setAttribute('stroke-width', '30')
-    gpa_status_y.setAttribute('fill', 'none')
-    gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
-
-    let gpa_status_r = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_r.setAttribute('r', '100')
-    gpa_status_r.setAttribute('cx', '125')
-    gpa_status_r.setAttribute('cy', '125')
-    gpa_status_r.setAttribute('stroke', '#e50900')
-    gpa_status_r.setAttribute('stroke-width', '30')
-    gpa_status_r.setAttribute('fill', 'none')
-    gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
-    
-    
-    
-    
-    
-    
-
-    
-    setTimeout(() => {
-        
-        
-        
-        for (let gpa_i of gpa_total) {
-            gpa_f += gpa_i;
-        }
-        gpa = (gpa_f/(gpa_total.length));
-        
-        
-        
-        // (Math.PI*100*2)*p
-        gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2)+' 0')
-        if (gpa > 1) {
-            gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+2)))
-            gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+2))+' '+(Math.PI*100*2*(gpa-1)))
-            gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-1))+' '+(Math.PI*100*2*(-gpa+2)))
-            
-            if (gpa > 2) {
-                gpa_status_r.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
-                gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+3)))
-                gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+3))+' '+(Math.PI*100*2*(gpa-2)))
-                gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
-                gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-2))+' '+(Math.PI*100*2*(-gpa+3)))
-                
-                if (gpa > 3) {
-                    gpa_status_y.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
-                    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+4)))
-                    gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+4))+' '+(Math.PI*100*2*(gpa-3)))
-                    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
-                    gpa_status_b.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-3))+' '+(Math.PI*100*2*(-gpa+4)))
-        }}}
-
-
-
-
-        gpa_status.appendChild(gpa_status_b);
-        gpa_status.appendChild(gpa_status_g);
-        gpa_status.appendChild(gpa_status_y);
-        gpa_status.appendChild(gpa_status_r);
-    
-    
-    
-    
-        let h1_gpa = document.createElement('h1');
-        let h1_gpa_strong = document.createElement('strong');
-        let gpa_div = document.createElement('div');
-        
-        gpa_div.style.paddingTop = '75px';
-        gpa_div.style.width = '300px';
-        gpa_div.style.height = '300px';
-        gpa_div.style.display = 'grid';
-
-
-        h1_gpa.style.alignSelf = 'center';
-        h1_gpa.style.justifySelf = 'center';
-        h1_gpa.style.position = 'absolute';
-        h1_gpa.style.fontSize = '50px';
-
-
-        h1_gpa_strong.style.fontWeight = '800'
-        h1_gpa_strong.textContent = gpa.toFixed(2);
-
-
-
-        document.getElementById('only_column').style.width = '70%';
-    
-        document.getElementById('content').style.display = 'flex';
-        document.getElementById('content').style.justifyContent = 'space-between';
-    
-        
-        
-        document.getElementById('main').style.margin = '12px 6vw';
-        document.getElementById('main').style.width = 'auto';
-    
-    
-    
-    
-        h1_gpa.appendChild(h1_gpa_strong);
-        gpa_div.appendChild(h1_gpa);
-        gpa_div.appendChild(gpa_status);
-        
-        document.getElementById('content').appendChild(gpa_div);
-
-    }, 1000);
 
 });
 
