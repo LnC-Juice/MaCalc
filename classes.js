@@ -68,8 +68,8 @@ window.addEventListener('pageshow', function () {
     }
 
     let gpa_status = document.createElementNS("http://www.w3.org/2000/svg",'svg');
-    gpa_status.setAttribute('width','300px');
-    gpa_status.setAttribute('height','300px');
+    gpa_status.setAttribute('width','250px');
+    gpa_status.setAttribute('height','250px');
     gpa_status.setAttribute('viewBox', '0 0 250 250');
 
     let gpa_status_b = document.createElementNS("http://www.w3.org/2000/svg",'circle');
@@ -164,20 +164,33 @@ window.addEventListener('pageshow', function () {
 
 
 
+        let textdiv_gpa = document.createElement('div');
+        let h3_gpa = document.createElement('h3');
         let h1_gpa = document.createElement('h1');
         let gpa_div = document.createElement('div');
         
         gpa_div.style.paddingTop = '75px';
-        gpa_div.style.width = '300px';
-        gpa_div.style.height = '300px';
+        gpa_div.style.width = '250px';
+        gpa_div.style.height = '250px';
         gpa_div.style.display = 'grid';
 
 
-        h1_gpa.style.alignSelf = 'center';
-        h1_gpa.style.justifySelf = 'center';
-        h1_gpa.style.position = 'absolute';
+        textdiv_gpa.style.position = 'absolute';
+        textdiv_gpa.style.alignSelf = 'center';
+        textdiv_gpa.style.justifySelf = 'center';
+
+        h3_gpa.style.textAlign = 'center';
+        h3_gpa.style.fontSize = '25px';
+        h3_gpa.style.fontWeight = '600';
+        h3_gpa.style.color = 'grey';
+        h3_gpa.style.margin = '0px';
+        h3_gpa.textContent = 'Year GPA:';
+        
+        
+        h1_gpa.style.textAlign = 'center';
         h1_gpa.style.fontSize = '50px';
         h1_gpa.style.fontWeight = '800';
+        h1_gpa.style.margin = '0px';
         h1_gpa.textContent = gpa.toFixed(2);
 
 
@@ -197,7 +210,9 @@ window.addEventListener('pageshow', function () {
 
 
 
-        gpa_div.appendChild(h1_gpa);
+        textdiv_gpa.appendChild(h3_gpa);
+        textdiv_gpa.appendChild(h1_gpa);
+        gpa_div.appendChild(textdiv_gpa);
         gpa_div.appendChild(gpa_status);
         
         document.getElementById('content').appendChild(gpa_div);
