@@ -147,7 +147,7 @@ window.addEventListener('pageshow', function () {
             };
             
 
-
+            if (cat_score.length === 0) return;
 
             for (let i of cat_score) {
                 score_count ++;
@@ -311,7 +311,10 @@ window.addEventListener('pageshow', function () {
 
     setTimeout(() => {
         
-        if (gpa_total.length == 0) gpa_status.setAttribute("hidden", "no GPA");
+        if (gpa_total.length == 0) {
+            gpa_status.setAttribute("hidden", "no GPA");
+            return;
+        }
 
 
         for (let gpa_i of gpa_total) {
