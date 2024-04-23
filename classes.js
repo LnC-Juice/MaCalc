@@ -67,46 +67,57 @@ window.addEventListener('pageshow', function () {
         i.remove();
     }
 
-    let gpa_status = document.createElementNS("http://www.w3.org/2000/svg",'svg')
-    gpa_status.setAttribute('width','300px')
-    gpa_status.setAttribute('height','300px')
-    gpa_status.setAttribute('viewBox', '0 0 250 250')
+    let gpa_status = document.createElementNS("http://www.w3.org/2000/svg",'svg');
+    gpa_status.setAttribute('width','300px');
+    gpa_status.setAttribute('height','300px');
+    gpa_status.setAttribute('viewBox', '0 0 250 250');
 
-    let gpa_status_b = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_b.setAttribute('r', '100')
-    gpa_status_b.setAttribute('cx', '125')
-    gpa_status_b.setAttribute('cy', '125')
-    gpa_status_b.setAttribute('stroke', '#1566b2')
-    gpa_status_b.setAttribute('stroke-width', '30')
-    gpa_status_b.setAttribute('fill', 'none')
-    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+    let gpa_status_b = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+    gpa_status_b.setAttribute('r', '100');
+    gpa_status_b.setAttribute('cx', '125');
+    gpa_status_b.setAttribute('cy', '125');
+    gpa_status_b.setAttribute('stroke', '#1566b2');
+    gpa_status_b.setAttribute('stroke-width', '30');
+    gpa_status_b.setAttribute('fill', 'none');
+    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25));
 
-    let gpa_status_g = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_g.setAttribute('r', '100')
-    gpa_status_g.setAttribute('cx', '125')
-    gpa_status_g.setAttribute('cy', '125')
-    gpa_status_g.setAttribute('stroke', '#76bb00')
-    gpa_status_g.setAttribute('stroke-width', '30')
-    gpa_status_g.setAttribute('fill', 'none')
-    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+    let gpa_status_g = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+    gpa_status_g.setAttribute('r', '100');
+    gpa_status_g.setAttribute('cx', '125');
+    gpa_status_g.setAttribute('cy', '125');
+    gpa_status_g.setAttribute('stroke', '#76bb00');
+    gpa_status_g.setAttribute('stroke-width', '30');
+    gpa_status_g.setAttribute('fill', 'none');
+    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25));
 
-    let gpa_status_y = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_y.setAttribute('r', '100')
-    gpa_status_y.setAttribute('cx', '125')
-    gpa_status_y.setAttribute('cy', '125')
-    gpa_status_y.setAttribute('stroke', '#f3cf00')
-    gpa_status_y.setAttribute('stroke-width', '30')
-    gpa_status_y.setAttribute('fill', 'none')
-    gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+    let gpa_status_y = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+    gpa_status_y.setAttribute('r', '100');
+    gpa_status_y.setAttribute('cx', '125');
+    gpa_status_y.setAttribute('cy', '125');
+    gpa_status_y.setAttribute('stroke', '#f3cf00');
+    gpa_status_y.setAttribute('stroke-width', '30');
+    gpa_status_y.setAttribute('fill', 'none');
+    gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25));
 
-    let gpa_status_r = document.createElementNS("http://www.w3.org/2000/svg",'circle')
-    gpa_status_r.setAttribute('r', '100')
-    gpa_status_r.setAttribute('cx', '125')
-    gpa_status_r.setAttribute('cy', '125')
-    gpa_status_r.setAttribute('stroke', '#e50900')
-    gpa_status_r.setAttribute('stroke-width', '30')
-    gpa_status_r.setAttribute('fill', 'none')
-    gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+    let gpa_status_r = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+    gpa_status_r.setAttribute('r', '100');
+    gpa_status_r.setAttribute('cx', '125');
+    gpa_status_r.setAttribute('cy', '125');
+    gpa_status_r.setAttribute('stroke', '#e50900');
+    gpa_status_r.setAttribute('stroke-width', '30');
+    gpa_status_r.setAttribute('fill', 'none');
+    gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25));
+    
+
+    let gpa_status_out = document.createElementNS("http://www.w3.org/2000/svg",'circle');
+    gpa_status_out.setAttribute('r', '100');
+    gpa_status_out.setAttribute('cx', '125');
+    gpa_status_out.setAttribute('cy', '125');
+    gpa_status_out.setAttribute('stroke', '#000000');
+    gpa_status_out.setAttribute('stroke-width', '33');
+    gpa_status_out.setAttribute('fill', 'none');
+    gpa_status_out.setAttribute('stroke-dashoffset', (Math.PI*102*2*0.25));
+    gpa_status_out.setAttribute('stroke-dasharray', (Math.PI*102*2)+' 0');
     
     const gpaCallback = () => {
             
@@ -120,30 +131,31 @@ window.addEventListener('pageshow', function () {
         
         
         // (Math.PI*100*2)*p
-        gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2)+' 0')
+        gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2)+' 0');
         if (gpa > 1) {
-            gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+2)))
-            gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+2))+' '+(Math.PI*100*2*(gpa-1)))
-            gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-1))+' '+(Math.PI*100*2*(-gpa+2)))
+            gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+2)));
+            gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+2))+' '+(Math.PI*100*2*(gpa-1)));
+            gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-1))+' '+(Math.PI*100*2*(-gpa+2)));
             
             if (gpa > 2) {
-                gpa_status_r.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
-                gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+3)))
-                gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+3))+' '+(Math.PI*100*2*(gpa-2)))
-                gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
-                gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-2))+' '+(Math.PI*100*2*(-gpa+3)))
+                gpa_status_r.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2));
+                gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+3)));
+                gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+3))+' '+(Math.PI*100*2*(gpa-2)));
+                gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25);
+                gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-2))+' '+(Math.PI*100*2*(-gpa+3)));
                 
                 if (gpa > 3) {
-                    gpa_status_y.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
-                    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+4)))
-                    gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+4))+' '+(Math.PI*100*2*(gpa-3)))
-                    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
-                    gpa_status_b.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-3))+' '+(Math.PI*100*2*(-gpa+4)))
+                    gpa_status_y.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2));
+                    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+4)));
+                    gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+4))+' '+(Math.PI*100*2*(gpa-3)));
+                    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25);
+                    gpa_status_b.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-3))+' '+(Math.PI*100*2*(-gpa+4)));
         }}}
 
 
 
 
+        gpa_status.appendChild(gpa_status_out);
         gpa_status.appendChild(gpa_status_b);
         gpa_status.appendChild(gpa_status_g);
         gpa_status.appendChild(gpa_status_y);
@@ -153,7 +165,6 @@ window.addEventListener('pageshow', function () {
 
 
         let h1_gpa = document.createElement('h1');
-        let h1_gpa_strong = document.createElement('strong');
         let gpa_div = document.createElement('div');
         
         gpa_div.style.paddingTop = '75px';
@@ -166,10 +177,10 @@ window.addEventListener('pageshow', function () {
         h1_gpa.style.justifySelf = 'center';
         h1_gpa.style.position = 'absolute';
         h1_gpa.style.fontSize = '50px';
+        h1_gpa.style.fontWeight = '800';
+        h1_gpa.textContent = gpa.toFixed(2);
 
 
-        h1_gpa_strong.style.fontWeight = '800'
-        h1_gpa_strong.textContent = gpa.toFixed(2);
 
 
 
@@ -186,7 +197,6 @@ window.addEventListener('pageshow', function () {
 
 
 
-        h1_gpa.appendChild(h1_gpa_strong);
         gpa_div.appendChild(h1_gpa);
         gpa_div.appendChild(gpa_status);
         
