@@ -73,7 +73,6 @@ window.addEventListener('pageshow', function () {
     chrome.storage.sync.get('large_display', function(data) {
         let ld = (data.large_display);
         if (ld != 'default') {
-
             displays[ld] ? ld : ld = 'sbl';
             document.querySelector(ld_path).style.left = '15px';
             document.querySelector(ld_path).style.right = '35px';
