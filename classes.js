@@ -265,84 +265,90 @@ window.addEventListener('pageshow', function () {
     }
 
 
-    let gpa_status = document.createElement('div')
-    gpa_status.style.border = '1px solid #000';
-    gpa_status.style.borderRadius = '10px';
-    gpa_status.style.width = '300px';
-    gpa_status.style.height = '100%';
-    gpa_status.style.overflow = 'hidden';
+    let gpa_status = document.createElementNS("http://www.w3.org/2000/svg",'svg')
+    gpa_status.setAttribute('width','300px')
+    gpa_status.setAttribute('height','300px')
+    gpa_status.setAttribute('viewBox', '0 0 250 250')
 
-    let gpa_status_b = document.createElement('div')
-    gpa_status_b.style.display = 'block';
-    gpa_status_b.style.float = 'left';
-    gpa_status_b.style.width = '300px';
-    gpa_status_b.style.height = '100px';
-    gpa_status_b.style.backgroundColor = '#1566b2';
+    let gpa_status_b = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_b.setAttribute('r', '100')
+    gpa_status_b.setAttribute('cx', '125')
+    gpa_status_b.setAttribute('cy', '125')
+    gpa_status_b.setAttribute('stroke', '#1566b2')
+    gpa_status_b.setAttribute('stroke-width', '30')
+    gpa_status_b.setAttribute('fill', 'none')
+    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
 
-    let gpa_status_g = document.createElement('div')
-    gpa_status_g.style.display = 'block';
-    gpa_status_g.style.float = 'left';
-    gpa_status_g.style.width = '300px';
-    gpa_status_g.style.height = '100px';
-    gpa_status_g.style.backgroundColor = '#76bb00';
+    let gpa_status_g = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_g.setAttribute('r', '100')
+    gpa_status_g.setAttribute('cx', '125')
+    gpa_status_g.setAttribute('cy', '125')
+    gpa_status_g.setAttribute('stroke', '#76bb00')
+    gpa_status_g.setAttribute('stroke-width', '30')
+    gpa_status_g.setAttribute('fill', 'none')
+    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
 
-    let gpa_status_y = document.createElement('div')
-    gpa_status_y.style.display = 'block';
-    gpa_status_y.style.float = 'left';
-    gpa_status_y.style.width = '300px';
-    gpa_status_y.style.height = '100px';
-    gpa_status_y.style.backgroundColor = '#f3cf00';
+    let gpa_status_y = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_y.setAttribute('r', '100')
+    gpa_status_y.setAttribute('cx', '125')
+    gpa_status_y.setAttribute('cy', '125')
+    gpa_status_y.setAttribute('stroke', '#f3cf00')
+    gpa_status_y.setAttribute('stroke-width', '30')
+    gpa_status_y.setAttribute('fill', 'none')
+    gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
 
-    let gpa_status_r = document.createElement('div')
-    gpa_status_r.style.display = 'block';
-    gpa_status_r.style.float = 'left';
-    gpa_status_r.style.width = '300px';
-    gpa_status_r.style.height = '100px';
-    gpa_status_r.style.backgroundColor = '#e50900';
+    let gpa_status_r = document.createElementNS("http://www.w3.org/2000/svg",'circle')
+    gpa_status_r.setAttribute('r', '100')
+    gpa_status_r.setAttribute('cx', '125')
+    gpa_status_r.setAttribute('cy', '125')
+    gpa_status_r.setAttribute('stroke', '#e50900')
+    gpa_status_r.setAttribute('stroke-width', '30')
+    gpa_status_r.setAttribute('fill', 'none')
+    gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25))
+    
+    
+    
+    
+    
+    
 
-
-
-
-
-
-    if (gpa_total.length == document.querySelectorAll('#content .classroom > .classroom_details').length) {
-        console.log(gpa_total);
-    }
-
+    
     setTimeout(() => {
         
         if (gpa_total.length == 0) {
             gpa_status.setAttribute("hidden", "no GPA");
             return;
         }
-
-
+        
+        
         for (let gpa_i of gpa_total) {
             gpa_f += gpa_i;
         }
-        gpa = (gpa_f/(gpa_total.length))*100;
-
-
-
-
-        gpa_status_r.style.height = (gpa)+'%';
-        if (gpa > 100) {
-            gpa_status_r.style.height = (100-(gpa))+'%';
-            gpa_status_y.style.height = (gpa-100)+'%';
-
-            if (gpa > 200) {
-                gpa_status_r.style.height = '0px';
-                gpa_status_y.style.height = (100-(gpa-100))+'%';
-                gpa_status_g.style.height = (gpa-200)+'%';
-
-                if (gpa > 30) {
-                    gpa_status_y.style.height = '0px';
-                    gpa_status_g.style.height = (100-(gpa-200))+'%';
-                    gpa_status_b.style.height = (gpa-300)+'%';
+        gpa = (gpa_f/(gpa_total.length));
+        
+        
+        
+        // (Math.PI*100*2)*p
+        gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2)+' 0')
+        if (gpa > 1) {
+            gpa_status_r.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+2)))
+            gpa_status_r.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+2))+' '+(Math.PI*100*2*(gpa-1)))
+            gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-1))+' '+(Math.PI*100*2*(-gpa+2)))
+            
+            if (gpa > 2) {
+                gpa_status_r.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
+                gpa_status_y.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+3)))
+                gpa_status_y.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+3))+' '+(Math.PI*100*2*(gpa-2)))
+                gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
+                gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-2))+' '+(Math.PI*100*2*(-gpa+3)))
+                
+                if (gpa > 3) {
+                    gpa_status_y.setAttribute('stroke-dasharray', '0 '+(Math.PI*100*2))
+                    gpa_status_g.setAttribute('stroke-dashoffset', (Math.PI*100*2*0.25)+(Math.PI*100*2*(-gpa+4)))
+                    gpa_status_g.setAttribute('stroke-dasharray', (Math.PI*100*2*(-gpa+4))+' '+(Math.PI*100*2*(gpa-3)))
+                    gpa_status_b.setAttribute('stroke-dashoffset', (Math.PI*100*2)*0.25)
+                    gpa_status_b.setAttribute('stroke-dasharray', (Math.PI*100*2*(gpa-3))+' '+(Math.PI*100*2*(-gpa+4)))
         }}}
-
-
-
 
 
 
@@ -355,14 +361,13 @@ window.addEventListener('pageshow', function () {
     
     
     
-    
-    
         let h1_gpa = document.createElement('h1');
         let h1_gpa_strong = document.createElement('strong');
         let gpa_div = document.createElement('div');
         
+        gpa_div.style.paddingTop = '75px';
         gpa_div.style.width = '300px';
-        gpa_div.style.height = 'auto';
+        gpa_div.style.height = '300px';
         gpa_div.style.display = 'grid';
 
 
@@ -372,7 +377,8 @@ window.addEventListener('pageshow', function () {
         h1_gpa.style.fontSize = '50px';
 
 
-        h1_gpa_strong.textContent = (gpa/100).toFixed(2);
+        h1_gpa_strong.style.fontWeight = '800'
+        h1_gpa_strong.textContent = gpa.toFixed(2);
 
 
 
