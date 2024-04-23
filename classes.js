@@ -2,8 +2,6 @@
 
 const cat_path = "#content .objective-wrapper .objective";
 const score_path = "div.objective-assessments div.assessment-score span";
-const ld_path = "#mastery_level_chart > h2";
-const sd_path = "#mastery_level_chart > h3";
 
 let cat_score = [];
 let cat_percent = [];
@@ -32,14 +30,26 @@ function get(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            callback(xhr.responseText);
-        };
+            let responseText = xhr.responseText;
+            
+            // Remove <script> and <link> elements before parsing
+            responseText = responseText.replace(/<script[\s\S]*?<\/script>/g, ""); // Remove all script tags
+            responseText = responseText.replace(/<link[\s\S]*?>/g, ""); // Remove all link tags
+            responseText = responseText.replace(/<img[\s\S]*?\/>/g, ""); // Remove all img tags
+            responseText = responseText.replace(/<meta[\s\S]*?>/g, ""); // Remove all meta tags
+            
+            // Now parse the cleaned HTML content
+            let parser = new DOMParser();
+            let doc = parser.parseFromString(responseText, "text/html");
+            
+            callback(doc);
+        }
     };
     xhr.open("GET", url, true);
+    xhr.responseType = "text"; // Make sure response is treated as text
     xhr.send();
 }
 
-let parser = new DOMParser();
 
 
 // Kind of a quick & easy way to write this, not at all the most efficient
@@ -232,7 +242,9 @@ window.addEventListener('pageshow', function () {
         link = i.querySelector('a').href;
 
         gradeRequests.add(link);
-        get(link + '/progress', function (html) {
+
+
+        get(link + '/progress', function (page) {
 
 
             let div = document.createElement('div')
@@ -289,9 +301,6 @@ window.addEventListener('pageshow', function () {
 
 
 
-
-
-
             classid = i.querySelector('a').href.slice(47);
 
             cat_score = [];
@@ -303,8 +312,6 @@ window.addEventListener('pageshow', function () {
             percent_count = 0;
             total_percent = 0;
 
-
-            let page = parser.parseFromString(html, "text/html");
 
 
 
@@ -341,7 +348,6 @@ window.addEventListener('pageshow', function () {
             };
             percent = (total_percent/percent_count).toFixed(2);
 
-            // console.log(score, classid)
 
             // letter 
             let a = [...Array(401).keys()].slice(325);
