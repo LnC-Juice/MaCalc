@@ -311,7 +311,7 @@ window.addEventListener('pageshow', function () {
 
     setTimeout(() => {
         
-        if (gpa_total.length == 0) gpa_status.setAttribute("hidden");
+        if (gpa_total.length == 0) gpa_status.setAttribute("hidden", "no GPA");
 
 
         for (let gpa_i of gpa_total) {
