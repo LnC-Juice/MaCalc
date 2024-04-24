@@ -20,7 +20,7 @@
         "https://app.masteryconnect.com/student/classes/*/progress*",
         "https://app.masteryconnect.com/classrooms/*/students/*"
       ],
-      "js": ["progress.js"],
+      "js": ["macalc_progress.js"],
       "all_frames": true
     },
     {
@@ -28,7 +28,7 @@
           "https://app.masteryconnect.com/student/classes",
           "https://app.masteryconnect.com/student/classes?*"
       ],
-      "js": ["classes.js"],
+      "js": ["macalc_classes.js"],
       "all_frames": true
     }
   ],
