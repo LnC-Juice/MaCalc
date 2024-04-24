@@ -264,7 +264,7 @@ window.addEventListener('pageshow', function () {
 
             let barcontanier = document.createElement('div');
             barcontanier.style.border = '1px solid #000';
-            barcontanier.style.borderRadius = '10px';
+            barcontanier.style.borderRadius = '5px';
             barcontanier.style.width = '150px';
             barcontanier.style.height = '15px';
             barcontanier.style.overflow = 'hidden';
