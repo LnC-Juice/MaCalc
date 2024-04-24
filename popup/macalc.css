@@ -182,6 +182,38 @@ label {
 }
 
 
+.setting {
+    display: grid;
+    justify-items: center;
+    margin: 10px 0;
+}
+
+.button {
+    background-color: #FFF;
+    margin-top: 30px;
+    width: 60px;
+    height: 30px;
+    align-content: center;
+    border: 1px solid #000;
+    border-radius: 2px;
+    box-shadow: 0 0 0px 0px var(--text);
+    transition: box-shadow 1s;
+}
+.button:hover {
+    box-shadow: 0 0 5px 0px var(--text);
+    transition: box-shadow 200ms;
+}
+.button:active{
+    background-color: #AAA;
+    box-shadow: 0 0 5px 2px var(--text);
+    transition: box-shadow 50ms;
+}
+.button p {
+    text-align: center;
+    font-size: 15px;
+}
+
+
 span.contacts {
     display: flex;
     margin: var(--padding);

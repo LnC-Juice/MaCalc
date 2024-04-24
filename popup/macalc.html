@@ -17,49 +17,59 @@
         </nav>
         <div id="content">
             <div id="main">
-                <div id="classesbuttom"><p>General</p></div>
+                <div id="classesbuttom"><p>Classes</p></div>
                 <div id="progressbutton"><p>Progress</p></div>
             </div>
+
             <div id="classes" class="mainhide">
-                <label for="wh">Wheel</label>
-                <select name="wh-setting" id="wh-setting">
-                    <option value="grid">Show</option>
-                    <option value="none">Hide</option>
-                </select>
-                <br>
-                <label for="lf">List Flip</label>
-                <select name="lf-setting" id="lf-setting">
-                    <option value="180">On</option>
-                    <option value="0">Off</option>
-                </select>
-                <br>
-                <label for="bc">Banded Color</label>
-                <select name="bc-setting" id="bc-setting">
-                    <option value="#EEE">On</option>
-                    <option value="#FFF">Off</option>
-                </select>
-                <br><br>
-                <button id="submit">Submit</button>
+                
+                <div class="setting">
+                    <label for="wh">Wheel</label>
+                    <select name="wh-setting" id="wh-setting">
+                        <option value="grid">Show</option>
+                        <option value="none">Hide</option>
+                    </select>
+                </div>
+                <div class="setting">
+                    <label for="lf">List Flip</label>
+                    <select name="lf-setting" id="lf-setting">
+                        <option value="180">On</option>
+                        <option value="0">Off</option>
+                    </select>
+                </div>
+                <div class="setting">
+                    <label for="bc">Banded Color</label>
+                    <select name="bc-setting" id="bc-setting">
+                        <option value="#EEE">On</option>
+                        <option value="#FFF">Off</option>
+                    </select>
+                </div>
+                <div class="button" id="submit"><p>Done</p></div>
             </div>
+            
             <div id="progress" class="mainhide">
-                <label for="ld">Large Display</label>
-                <select name="ld-setting" id="ld-setting">
-                    <option value="sbl">SBL Grade</option>
-                    <option value="letter">Letter Grade</option>
-                    <option value="gpa">GPA</option>
-                    <option value="default">Default</option>
-                </select>
-                <br>
-                <label for="sd">Small Display</label>
-                <select name="sd-setting" id="sd-setting">
-                    <option value="letter">Letter Grade</option>
-                    <option value="sbl">SBL Grade</option>
-                    <option value="gpa">GPA</option>
-                    <option value="default">Default</option>
-                    <option value="none">None</option>
-                </select>
-                <br><br>
-                <button id="submit1">Submit</button>
+                <div class="setting">
+                    <label for="ld">Large Display</label>
+                    <select name="ld-setting" id="ld-setting">
+                        <option value="sbl">SBL Grade</option>
+                        <option value="letter">Letter Grade</option>
+                        <option value="gpa">GPA</option>
+                        <option value="default">Default</option>
+                    </select>
+                </div>
+
+                <div class="setting">
+                    <label for="sd">Small Display</label>
+                    <select name="sd-setting" id="sd-setting">
+                        <option value="letter">Letter Grade</option>
+                        <option value="sbl">SBL Grade</option>
+                        <option value="gpa">GPA</option>
+                        <option value="default">Default</option>
+                        <option value="none">None</option>
+                    </select>
+                </div>
+                
+                <div class="button" id="submit1"><p>Done</p></div>
             </div>
         </div>
         <span class="contacts">
