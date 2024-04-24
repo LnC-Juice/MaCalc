@@ -13,6 +13,18 @@ let score_count = 0;
 let letter = 0;
 let gpa = 0;
 
+function firstRender() {
+    for (let i of document.querySelectorAll('.expand-collapse-btn')) {
+        i.style.position = 'absolute';
+        i.style.width = '100%';
+        i.style.height = '55px';
+        i.style.top = '0';
+        i.style.left = '0';
+        i.style.margin = '0';
+    }
+    renderScores();
+}
+
 
 function renderScores() {
 
@@ -97,7 +109,7 @@ function renderScores() {
         }
     });
 }
-window.addEventListener('pageshow', renderScores);
+window.addEventListener('pageshow', firstRender);
 
 // What if scores section
 
