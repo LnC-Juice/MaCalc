@@ -26,6 +26,7 @@ function renderScores() {
         if (document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null) {
             for (let i of document.querySelectorAll(cat_path+':nth-of-type('+c+') '+score_path)) {
                 i.addEventListener("click", editGrades);
+                i.style.cursor = "text";
                 let texts = i.textContent.split(/ +/g);
                 count += parseInt(texts[2]);
                 total += parseInt(texts[0]);
