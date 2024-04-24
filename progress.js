@@ -14,17 +14,21 @@ let letter = 0;
 let gpa = 0;
 
 
-window.addEventListener('pageshow', function () {
+function renderScores() {
 
-
+    cat_score = [];
+    total_score = 0;
+    score_count = 0;
     for (let [c, element] of document.querySelectorAll(cat_path).entries()) {
         c ++;
         let count = 0;
         let total = 0;
         if (document.querySelector(cat_path+':nth-of-type('+c+') '+score_path) != null) {
             for (let i of document.querySelectorAll(cat_path+':nth-of-type('+c+') '+score_path)) {
-                count += parseInt(i.textContent[i.textContent.length - 1]);
-                total += parseInt(i.textContent[0]);
+                i.addEventListener("click", editGrades);
+                let texts = i.textContent.split(/ +/g);
+                count += parseInt(texts[2]);
+                total += parseInt(texts[0]);
             };
             document.querySelector(cat_path+':nth-of-type('+c+') > .objective-mastery > .mastery-letter').textContent = (total/(count/4)).toFixed(2)
             cat_score.push(total/(count/4));
@@ -91,7 +95,102 @@ window.addEventListener('pageshow', function () {
             document.querySelector(sd_path).textContent = displays[sd];
         }
     });
-});
+}
+window.addEventListener('pageshow', renderScores);
 
+// What if scores
+/* TODO : FOLLOW SNAKE CASE NAMING CONVENTION.
+    REVIEW AND CLEAN UP CODE
+*/
+const templateCategories = {
+    "25": {text: "R", color: "#e50900"},
+    "50": {text: "NM", color: "#f3cf00"},
+    "75": {text: "M", color: "#76bb00"},
+    "Default": {text: "XM", color: "#1566b2"}
+}
+const templateGrade = document.querySelector(cat_path+ "div.assessment-thumbnails > ul > li")?.cloneNode();
+console.log(templateGrade);
+
+// we use two forms because... the website is annoying about one form w/ a hidden button.
+const numerator = document.createElement("form");
+numerator.setAttribute("method", "dialog");
+numerator.style.display = "inline";
+numerator.id = "macalc-numerator"
+
+const numeratorInput = document.createElement("input");
+numeratorInput.setAttribute("type", "text");
+numeratorInput.id = "macalc-numerator-input";
+numeratorInput.style.width = "25%";
+numeratorInput.setAttribute("maxlength", "2");
+numeratorInput.setAttribute("pattern", "[0-9]{1,2}");
+
+const denominator = numerator.cloneNode();
+denominator.id = "mecalc-denominator"
+
+const denominatorInput = numeratorInput.cloneNode();
+denominatorInput.id = "macalc-denominator-input";
+
+
+function finishEditingGrades(event) {
+    let oldScores = event.currentTarget.parentElement.getAttribute("macalc-preserve-scores").split(/ +/g);
+    let num = document.querySelector("#macalc-numerator-input").value
+    let den = document.querySelector("#macalc-denominator-input").value
+
+    let scores = (num.match(/^[0-9]*$/g) ? num : oldScores[0]) + " / " + (den.match(/^[0-9]*$/g) ? den : oldScores[2]);
+
+    let assignment_banner = event.currentTarget.parentElement.parentElement.parentElement.querySelector(".assessment-mastery") // Wow, inheritance :D
+    event.currentTarget.parentElement.removeAttribute("macalc-modified");
+    event.currentTarget.parentElement.innerHTML = scores;
+
+    scores = scores.split(" ");
+    let percent = (scores[0]/scores[2]).toFixed(2)*100;
+    // Modify assignment displays for visual effect
+    let modifier;
+    for (let i of Object.keys(templateCategories)) {
+        if (percent > Number.parseInt(i, 10) && i !== "Default") continue;
+        modifier = templateCategories[i]; 
+        break;
+    }
+    assignment_banner.style["background-color"] = modifier.color;
+    assignment_banner.firstElementChild.innerText = modifier.text;
+
+    renderScores();
+}
+
+
+function editGrades(event) {
+    // if (!editGrades) return;
+    
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (event.currentTarget.getAttribute("macalc-modified") !== "true") {
+        event.currentTarget.setAttribute("macalc-modified", "true");
+        event.currentTarget.setAttribute("macalc-preserve-scores", event.currentTarget.textContent);
+        let scores = event.currentTarget.textContent.split(/ +/g);
+        if (document.querySelector("#macalc-numerator")) {
+            finishEditingGrades({currentTarget: document.querySelector("#macalc-numerator")})
+        }
+
+        let num = numerator.cloneNode();
+        num.appendChild(numeratorInput.cloneNode());
+        num.firstChild.setAttribute("value", scores[0]);
+        let den = numerator.cloneNode();
+        den.appendChild(denominatorInput.cloneNode());
+        den.firstChild.setAttribute("value", scores[2]);
+
+        let slash = document.createElement("span");
+        slash.innerText = " / "
+
+        num.addEventListener("submit", finishEditingGrades);
+        den.addEventListener("submit", finishEditingGrades);
+
+        event.currentTarget.innerText = "";
+        event.currentTarget.appendChild(num);
+        event.currentTarget.appendChild(slash);
+        event.currentTarget.appendChild(den);
+    }
+}
 
 }
