@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
     chrome.storage.sync.get('small_display', function(data) {
         let sd = (data.small_display);
-        displays[sd] ? sd : sd = 180;
+        displays[sd] ? sd : sd = 'letter';
         document.querySelector('#sd-setting option[value="'+displays[sd]+'"]').setAttribute('selected', 'True')
     })
 
