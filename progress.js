@@ -98,20 +98,65 @@ function renderScores() {
 }
 window.addEventListener('pageshow', renderScores);
 
-// What if scores
-/* TODO : FOLLOW SNAKE CASE NAMING CONVENTION.
-    REVIEW AND CLEAN UP CODE
-*/
-const templateCategories = {
+// What if scores section
+
+
+
+const template_categories = {
     "25": {text: "R", color: "#e50900"},
     "50": {text: "NM", color: "#f3cf00"},
     "75": {text: "M", color: "#76bb00"},
     "Default": {text: "XM", color: "#1566b2"}
 }
-const templateGrade = document.querySelector(cat_path+ "div.assessment-thumbnails > ul > li")?.cloneNode();
-console.log(templateGrade);
 
-// we use two forms because... the website is annoying about one form w/ a hidden button.
+
+// Add reset scores functionality
+let reset_scores = document.createElement("button");
+reset_scores.id = "reset-scores";
+// feel free to modify the style ofc, just wanted something half decent
+reset_scores.style.width = "200px";
+reset_scores.style.height = "50px";
+reset_scores.style.margin = "20px";
+reset_scores.style.borderStyle = "solid";
+reset_scores.textContent = "Reset What-If Scores";
+// Without css, gotta resort to events to do styling like this
+reset_scores.style.background = "linear-gradient(#0000, rgb(0 0 0/20%)) top/100% 800%";
+reset_scores.style.transition = "0.2s";
+reset_scores.addEventListener("mouseenter", () => {
+    reset_scores.style.backgroundPosition = "bottom";
+})
+reset_scores.addEventListener("mouseleave", () => {
+    reset_scores.style.backgroundPosition = "";
+})
+
+reset_scores.setAttribute("hidden", "true");
+reset_scores.addEventListener("click", () => {
+    reset_scores.setAttribute("hidden", "true");
+    [...document.querySelectorAll("span[macalc-preserve-scores]")]?.forEach(i => {
+        let scores = i.getAttribute("macalc-preserve-scores");
+        i.textContent = scores;
+        scores = scores.split(/ +/g);
+        modifyAssessnmentDisplays(i.parentElement.parentElement.querySelector(".assessment-mastery"),
+            (scores[0]/scores[2]).toFixed(2)*100);
+        i.removeAttribute("macalc-preserve-scores");
+    })
+    renderScores();
+})
+
+function modifyAssessnmentDisplays(assessment_mastery, percent) {
+    // Modify assignment displays for visual effect
+    let modifier;
+    for (let i of Object.keys(template_categories)) {
+        if (percent > Number.parseInt(i, 10) && i !== "Default") continue;
+        modifier = template_categories[i]; 
+        break;
+    }
+    assessment_mastery.style["background-color"] = modifier.color;
+    assessment_mastery.firstElementChild.textContent = modifier.text;
+}
+
+// Layout for the inputs 
+// (FYI, this uses two forms because putting two inputs in a single form requires a submit type input, which MasteryConnect is funky with)
 const numerator = document.createElement("form");
 numerator.setAttribute("method", "dialog");
 numerator.style.display = "inline";
@@ -130,13 +175,19 @@ denominator.id = "mecalc-denominator"
 const denominatorInput = numeratorInput.cloneNode();
 denominatorInput.id = "macalc-denominator-input";
 
-
+// Resets to original look, while modifying assignment aesthetic to match and properly recalculating grade.
 function finishEditingGrades(event) {
-    let oldScores = event.currentTarget.parentElement.getAttribute("macalc-preserve-scores").split(/ +/g);
+    let old_scores = event.currentTarget.parentElement.getAttribute("macalc-preserve-scores").split(/ +/g);
     let num = document.querySelector("#macalc-numerator-input").value
     let den = document.querySelector("#macalc-denominator-input").value
 
-    let scores = (num.match(/^[0-9]*$/g) ? num : oldScores[0]) + " / " + (den.match(/^[0-9]*$/g) ? den : oldScores[2]);
+
+    let scores = (num.match(/^[0-9]*$/g) ? num : old_scores[0]) + " / " + (den.match(/^[0-9]*$/g) ? den : old_scores[2]);
+
+    if (old_scores.join(" ") === scores) {
+        event.currentTarget.parentElement.removeAttribute("macalc-preserve-scores");
+        if (document.querySelectorAll("span[macalc-preserve-scores]").length === 0) reset_scores.setAttribute("hidden", "true");
+    } else reset_scores.removeAttribute("hidden");
 
     let assignment_banner = event.currentTarget.parentElement.parentElement.parentElement.querySelector(".assessment-mastery") // Wow, inheritance :D
     event.currentTarget.parentElement.removeAttribute("macalc-modified");
@@ -144,31 +195,24 @@ function finishEditingGrades(event) {
 
     scores = scores.split(" ");
     let percent = (scores[0]/scores[2]).toFixed(2)*100;
-    // Modify assignment displays for visual effect
-    let modifier;
-    for (let i of Object.keys(templateCategories)) {
-        if (percent > Number.parseInt(i, 10) && i !== "Default") continue;
-        modifier = templateCategories[i]; 
-        break;
-    }
-    assignment_banner.style["background-color"] = modifier.color;
-    assignment_banner.firstElementChild.innerText = modifier.text;
+    modifyAssessnmentDisplays(assignment_banner, percent);
 
     renderScores();
 }
 
 
 function editGrades(event) {
-    // if (!editGrades) return;
-    
     event.stopImmediatePropagation();
     event.stopPropagation();
     event.preventDefault();
 
     if (event.currentTarget.getAttribute("macalc-modified") !== "true") {
         event.currentTarget.setAttribute("macalc-modified", "true");
-        event.currentTarget.setAttribute("macalc-preserve-scores", event.currentTarget.textContent);
+        if (!event.currentTarget.hasAttribute("macalc-preserve-scores"))
+            event.currentTarget.setAttribute("macalc-preserve-scores", event.currentTarget.textContent);
         let scores = event.currentTarget.textContent.split(/ +/g);
+
+        // Only one grade edit can be active at a time.
         if (document.querySelector("#macalc-numerator")) {
             finishEditingGrades({currentTarget: document.querySelector("#macalc-numerator")})
         }
@@ -181,16 +225,18 @@ function editGrades(event) {
         den.firstChild.setAttribute("value", scores[2]);
 
         let slash = document.createElement("span");
-        slash.innerText = " / "
+        slash.textContent = " / "
 
         num.addEventListener("submit", finishEditingGrades);
         den.addEventListener("submit", finishEditingGrades);
 
-        event.currentTarget.innerText = "";
+        event.currentTarget.textContent = "";
         event.currentTarget.appendChild(num);
         event.currentTarget.appendChild(slash);
         event.currentTarget.appendChild(den);
     }
 }
+
+window.addEventListener("pageshow", () => document.querySelector("#content .objective-wrapper").append(reset_scores));
 
 }
