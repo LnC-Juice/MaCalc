@@ -214,12 +214,12 @@ window.addEventListener('pageshow', function () {
             
             
             if (wheel[ws] == 'grid') {
-                document.getElementById('only_column').style.width = '70%';
+                document.getElementById('only_column').style.width = '80%';
 
                 document.getElementById('content').style.display = 'flex';
                 document.getElementById('content').style.justifyContent = 'space-between';
 
-                document.getElementById('main').style.margin = '12px 6vw';
+                document.getElementById('main').style.margin = '12px 8vw';
                 document.getElementById('main').style.width = 'auto';
             }
         });
