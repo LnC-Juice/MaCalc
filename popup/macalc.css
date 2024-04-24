@@ -6,6 +6,7 @@
         --padding2: 20px;
         --text: rgb(41, 41, 41);
         --accent: rgb(57, 75, 88);
+        --accent2: rgb(77, 95, 108);
         --text2: rgb(255, 255, 255);
         --background: rgb(255, 255, 255);
         --invert-bool: '';
@@ -19,24 +20,13 @@
         --padding2: 20px;
         --text: rgb(255, 255, 255);
         --accent: rgb(57, 75, 88);
+        --accent2: rgb(77, 95, 108);
         --text2: rgb(255, 255, 255);
         --background: rgb(30, 30, 30);
         --invert-bool: invert();
     }
 }
 
-
-/* :root {
-    --width: 350px;
-    --height: 500px;
-    --padding: 10px;
-    --padding2: 20px;
-    --text: rgb(41, 41, 41);
-    --accent: rgb(57, 75, 88);
-    --text2: rgb(255, 255, 255);
-    --background: rgb(255, 255, 255);
-    --invert-bool: '';
-} */
 
 
 html {
@@ -66,18 +56,126 @@ header h1 {
     margin-bottom: 0;
 }
 
-.settings {
+nav {
+    margin: var(--padding);
+    width: calc(var(--width) - var(--padding2)*2);
+    height: 20px;
+}
+
+
+#content {
+    height: 275px;
+    margin: var(--padding2);
+}
+#content > * {
+    height: 285px;
+}
+
+
+#main {
     display: grid;
     align-content: center;
     align-items: center;
     justify-items: center;
     justify-content: center;
-    margin: var(--padding2);
     width: calc(var(--width) - var(--padding2)*2);
-    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2 - 100px);
+}
+#main h2 {
+    text-align: center;
+    color: var(--text);
+    top: 0;
+}
+#main.hidden {
+    display: none;
 }
 
-.settings label {
+#classesbuttom {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent);
+    text-align: center;
+    align-content: center;
+    box-shadow: 5px 5px 1em;
+    transition: all 500ms;
+    margin: var(--padding)
+
+}
+#classesbuttom p {
+    color: #FFFFFF;
+}
+#generalbuttom:active {
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent2);
+    text-align: center;
+    align-content: center;
+    box-shadow: 0px 0px 0em;
+    transition: all 200ms;
+}
+
+
+#classesbuttom:active {
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent2);
+    text-align: center;
+    align-content: center;
+    box-shadow: 0px 0px 0em;
+    transition: all 200ms;
+}
+
+#classes.mainhide {
+    display: none;
+}
+#classes.active {
+    display: grid;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: calc(var(--width) - var(--padding2)*2);
+    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2 - 100px - 10px);
+}
+
+#progressbutton {
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent);
+    text-align: center;
+    align-content: center;
+    box-shadow: 5px 5px 1em;
+    transition: all 500ms;
+    margin: var(--padding)
+}
+#progressbutton p {
+    color: #FFFFFF;
+}
+#progressbutton:active {
+    width: 100px;
+    height: 100px;
+    background-color: var(--accent2);
+    text-align: center;
+    align-content: center;
+    box-shadow: 0px 0px 0em;
+    transition: all 200ms;
+}
+
+#progress.mainhide {
+    display: none;
+}
+#progress.active {
+    display: grid;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: calc(var(--width) - var(--padding2)*2);
+    height: calc(var(--height) - 75px - var(--padding)*3 - var(--padding2)*2 - 100px - 10px);
+}
+
+label {
     color: var(--text);
     text-align: center;
     font-size: 14pt;
@@ -86,9 +184,9 @@ header h1 {
 
 span.contacts {
     display: flex;
-    margin: var(--padding2);
-    width: var();
-    height: calc(100px - var(--padding2));
+    margin: var(--padding);
+    width: calc(var(--width) - var(--padding)*2);
+    height: 40px;
     align-items: center;
     justify-content: space-between;
     color: var(--text)
@@ -105,7 +203,7 @@ span.contacts {
     align-items: center;
 }
 .contacts span svg {
-    padding: 10px;
+    padding: 0px 10px 0px 10px;
 }
 .contacts a {
     color: var(--text)
