@@ -160,6 +160,7 @@ function modifyAssessnmentDisplays(assessment_mastery, percent) {
 // (FYI, this uses two forms because putting two inputs in a single form requires a submit type input, which MasteryConnect is funky with)
 const numerator = document.createElement("form");
 numerator.setAttribute("method", "dialog");
+// numerator.setAttribute("action", " ");
 numerator.style.display = "inline";
 numerator.id = "macalc-numerator"
 
@@ -187,8 +188,12 @@ function finishEditingGrades(event) {
 
     if (old_scores.join(" ") === scores) {
         event.currentTarget.parentElement.removeAttribute("macalc-preserve-scores");
-        if (document.querySelectorAll("span[macalc-preserve-scores]").length === 0) reset_scores.setAttribute("hidden", "true");
-    } else reset_scores.removeAttribute("hidden");
+        if (document.querySelectorAll("span[macalc-preserve-scores]").length === 0){
+            reset_scores.setAttribute("hidden", "true");
+        }
+    } else {
+        reset_scores.removeAttribute("hidden");
+    }
 
     let assignment_banner = event.currentTarget.parentElement.parentElement.parentElement.querySelector(".assessment-mastery") // Wow, inheritance :D
     event.currentTarget.parentElement.removeAttribute("macalc-modified");
@@ -221,7 +226,7 @@ function editGrades(event) {
         let num = numerator.cloneNode();
         num.appendChild(numeratorInput.cloneNode());
         num.firstChild.setAttribute("value", scores[0]);
-        let den = numerator.cloneNode();
+        let den = denominator.cloneNode();
         den.appendChild(denominatorInput.cloneNode());
         den.firstChild.setAttribute("value", scores[2]);
 
