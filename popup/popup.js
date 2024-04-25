@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', function () {
             document.getElementById('main').setAttribute('class', 'hidden');
             document.getElementById('progress').setAttribute('class', document.getElementById('progress').getAttribute('class') + ' active');
     });
-    document.getElementById('classesbuttom').addEventListener('click', function () {
+    document.getElementById('classesbutton').addEventListener('click', function () {
         document.getElementById('main').setAttribute('class', 'hidden');
         document.getElementById('classes').setAttribute('class', document.getElementById('classes').getAttribute('class') + ' active');
     });
