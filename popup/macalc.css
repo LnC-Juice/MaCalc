@@ -61,7 +61,9 @@ nav {
     width: calc(var(--width) - var(--padding2)*2);
     height: 20px;
 }
-
+#back {
+    cursor: pointer;
+}
 
 #content {
     height: 275px;
@@ -189,6 +191,7 @@ label {
 }
 
 .button {
+    cursor: pointer;
     background-color: #FFF;
     margin-top: 30px;
     width: 60px;
@@ -203,12 +206,13 @@ label {
     box-shadow: 0 0 5px 0px var(--text);
     transition: box-shadow 200ms;
 }
-.button:active{
+.button:active {
     background-color: #AAA;
     box-shadow: 0 0 5px 2px var(--text);
     transition: box-shadow 50ms;
 }
 .button p {
+    user-select: none;
     text-align: center;
     font-size: 15px;
 }
