@@ -10,7 +10,8 @@ function submit() {
 
     chrome.storage.sync.set({ wheel_settings: wh });
     chrome.storage.sync.set({ listflip_settings: lf});
-    chrome.storage.sync.set({ bandedcolor_settings: bc});
+    chrome.storage.sync.set({ bandedcolor_settings: bc });
+    close_popup();
 }
 function submit1() {
     ld = document.getElementById('ld-setting').value;
@@ -18,4 +19,9 @@ function submit1() {
 
     chrome.storage.sync.set({ large_display: ld });
     chrome.storage.sync.set({ small_display: sd });
+    close_popup();
+}
+
+function close_popup() {
+    window.close();
 }
