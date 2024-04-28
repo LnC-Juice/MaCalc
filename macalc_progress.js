@@ -347,7 +347,7 @@ function addDemoAssignment(event) {
     demoAssignmentActive.addEventListener("mouseenter", hoverEnterDemoAssignment);
     demoAssignmentActive.addEventListener("mouseleave", hoverExitDemoAssignment);
     event.currentTarget.parentElement.insertBefore(demoAssignmentActive, event.currentTarget);
-    event.currentTarget.parentElement.insertBefore(spacer.cloneNode(), event.currentTarget);
+    event.currentTarget.parentElement.insertBefore(spacer.cloneNode(true), event.currentTarget);
     reset_scores.removeAttribute("hidden");
     renderScores();
 }
