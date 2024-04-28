@@ -30,13 +30,11 @@ function firstRender() {
     renderScores();
 }
 
-
 function renderScores() {
-
     cat_score = [];
     total_score = 0;
     score_count = 0;
-    for (let [c, element] of document.querySelectorAll(cat_path).entries()) {
+    for (let [c] of document.querySelectorAll(cat_path).entries()) {
         c ++;
         let count = 0;
         let total = 0;
@@ -128,7 +126,6 @@ const template_categories = {
     "Default": {text: "XM", color: "#1566b2"}
 }
 
-
 // Add reset scores functionality
 let reset_scores = document.createElement("button");
 reset_scores.id = "reset-scores";
@@ -151,7 +148,7 @@ reset_scores.addEventListener("mouseleave", () => {
 reset_scores.setAttribute("hidden", "true");
 reset_scores.addEventListener("click", () => {
     reset_scores.setAttribute("hidden", "true");
-    [...document.querySelectorAll("span[macalc-preserve-scores]")]?.forEach(i => {
+    document.querySelectorAll("span[macalc-preserve-scores]").forEach(i => {
         let scores = i.getAttribute("macalc-preserve-scores");
         i.textContent = scores;
         scores = scores.split(/ +/g);
@@ -178,7 +175,7 @@ function modifyAssessmentDisplays(assessment_mastery, percent) {
 
 function checkScoreValidity() {
     if (document.querySelectorAll("span[macalc-preserve-scores]").length === 0 
-    && document.querySelectorAll(".macalc-demo-score").length === 0){
+        && document.querySelectorAll(".macalc-demo-score").length === 0) {
         reset_scores.setAttribute("hidden", "true");
     }
 }
@@ -187,7 +184,6 @@ function checkScoreValidity() {
 // (FYI, this uses two forms because putting two inputs in a single form requires a submit type input, which MasteryConnect is funky with)
 const numerator = document.createElement("form");
 numerator.setAttribute("method", "dialog");
-// numerator.setAttribute("action", " ");
 numerator.style.display = "inline";
 numerator.id = "macalc-numerator"
 
@@ -211,7 +207,6 @@ function finishEditingGrades(event) {
     let old_scores = event.currentTarget.parentElement.getAttribute("macalc-preserve-scores").split(/ +/g);
     let num = document.querySelector("#macalc-numerator-input").value
     let den = document.querySelector("#macalc-denominator-input").value
-
 
     let scores = (num.match(/^[0-9]*$/g) ? num : old_scores[0]) + " / " + (den.match(/^[0-9]*$/g) ? den : old_scores[2]);
 
@@ -274,9 +269,7 @@ window.addEventListener("pageshow", () => document.querySelector("#content .obje
 
 // Demo Assignment
 const demoAssignment = document.createElement("li");
-// has to be a variable due to the dumb process
 let addAssignment;
-// This nesting is painful to look at
 function createDemoAssignment() {
     const demoContainer = document.createElement("div");
     demoContainer.classList.add("assessment-thumbnail");
@@ -319,9 +312,6 @@ function createDemoAssignment() {
         svg.setAttribute("height", "50px");
         svg.setAttribute("width", "50px");
         svg.setAttribute("style", "position: absolute; bottom: 35%; right: 15%;");
-        //svg.style.position = "absolute";
-        //svg.style.bottom = "35%";
-        //svg.style.right = "15%";
         const line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
         line1.setAttribute("stroke", "#888888");
         line1.setAttribute("stroke-width", "10px");
@@ -379,7 +369,7 @@ spacer.textContent = " ";
 function hoverEnterDemoAssignment(event) {
     event.currentTarget.querySelector("img").style.filter = "brightness(0.9)";
 }
-function hoverExitDemoAssignment() {
+function hoverExitDemoAssignment(event) {
     event.currentTarget.querySelector("img").style.filter = "";
 }
 
