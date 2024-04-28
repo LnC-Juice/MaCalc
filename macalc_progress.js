@@ -22,6 +22,11 @@ function firstRender() {
         i.style.left = '0';
         i.style.margin = '0';
     }
+    document.querySelectorAll(".objective div.assessment-thumbnails > ul").forEach(i => {
+        const addAssignmentActive = addAssignment.cloneNode(true);
+        addAssignmentActive.addEventListener("click", addDemoAssignment);
+        i.appendChild(addAssignmentActive);
+    });
     renderScores();
 }
 
@@ -150,14 +155,16 @@ reset_scores.addEventListener("click", () => {
         let scores = i.getAttribute("macalc-preserve-scores");
         i.textContent = scores;
         scores = scores.split(/ +/g);
-        modifyAssessnmentDisplays(i.parentElement.parentElement.querySelector(".assessment-mastery"),
+        modifyAssessmentDisplays(i.parentElement.parentElement.querySelector(".assessment-mastery"),
             (scores[0]/scores[2]).toFixed(2)*100);
         i.removeAttribute("macalc-preserve-scores");
     })
+    document.querySelectorAll(".objective ul > li.macalc-demo-score").forEach(i => i.remove());
+    document.querySelectorAll(".objective ul > span").forEach(i => i.remove());
     renderScores();
 })
 
-function modifyAssessnmentDisplays(assessment_mastery, percent) {
+function modifyAssessmentDisplays(assessment_mastery, percent) {
     // Modify assignment displays for visual effect
     let modifier;
     for (let i of Object.keys(template_categories)) {
@@ -167,6 +174,13 @@ function modifyAssessnmentDisplays(assessment_mastery, percent) {
     }
     assessment_mastery.style["background-color"] = modifier.color;
     assessment_mastery.firstElementChild.textContent = modifier.text;
+}
+
+function checkScoreValidity() {
+    if (document.querySelectorAll("span[macalc-preserve-scores]").length === 0 
+    && document.querySelectorAll(".macalc-demo-score").length === 0){
+        reset_scores.setAttribute("hidden", "true");
+    }
 }
 
 // Layout for the inputs 
@@ -183,12 +197,14 @@ numeratorInput.id = "macalc-numerator-input";
 numeratorInput.style.width = "25%";
 numeratorInput.setAttribute("maxlength", "2");
 numeratorInput.setAttribute("pattern", "[0-9]{1,2}");
+numerator.appendChild(numeratorInput);
 
 const denominator = numerator.cloneNode();
 denominator.id = "mecalc-denominator"
 
 const denominatorInput = numeratorInput.cloneNode();
 denominatorInput.id = "macalc-denominator-input";
+denominator.appendChild(denominatorInput);
 
 // Resets to original look, while modifying assignment aesthetic to match and properly recalculating grade.
 function finishEditingGrades(event) {
@@ -201,9 +217,7 @@ function finishEditingGrades(event) {
 
     if (old_scores.join(" ") === scores) {
         event.currentTarget.parentElement.removeAttribute("macalc-preserve-scores");
-        if (document.querySelectorAll("span[macalc-preserve-scores]").length === 0){
-            reset_scores.setAttribute("hidden", "true");
-        }
+        checkScoreValidity();
     } else {
         reset_scores.removeAttribute("hidden");
     }
@@ -214,7 +228,7 @@ function finishEditingGrades(event) {
 
     scores = scores.split(" ");
     let percent = (scores[0]/scores[2]).toFixed(2)*100;
-    modifyAssessnmentDisplays(assignment_banner, percent);
+    modifyAssessmentDisplays(assignment_banner, percent);
 
     renderScores();
 }
@@ -236,11 +250,9 @@ function editGrades(event) {
             finishEditingGrades({currentTarget: document.querySelector("#macalc-numerator")})
         }
 
-        let num = numerator.cloneNode();
-        num.appendChild(numeratorInput.cloneNode());
+        let num = numerator.cloneNode(true);
         num.firstChild.setAttribute("value", scores[0]);
-        let den = denominator.cloneNode();
-        den.appendChild(denominatorInput.cloneNode());
+        let den = denominator.cloneNode(true);
         den.firstChild.setAttribute("value", scores[2]);
 
         let slash = document.createElement("span");
@@ -257,5 +269,118 @@ function editGrades(event) {
 }
 
 window.addEventListener("pageshow", () => document.querySelector("#content .objective-wrapper").append(reset_scores));
+
+// Demo Scores
+
+// Demo Assignment
+const demoAssignment = document.createElement("li");
+// has to be a variable due to the dumb process
+let addAssignment;
+// This nesting is painful to look at
+function createDemoAssignment() {
+    const demoContainer = document.createElement("div");
+    demoContainer.classList.add("assessment-thumbnail");
+    demoContainer.style.cursor = "pointer";
+    // Using anon functions to not clutter consts or variables in the global space
+    demoContainer.appendChild((function (){
+        const img = document.createElement("img"); 
+        img.setAttribute("alt", "assessment thumbnail"); img.classList.add("thumb"); 
+        img.setAttribute("src", "https://cdn.masteryconnect.com/images/thumbnail.gif"); 
+        return img;
+    })());
+    demoAssignment.appendChild(demoContainer);
+    addAssignment = demoAssignment.cloneNode(true); // Since everything is the same up until after this point
+    demoAssignment.classList.add("macalc-demo-score");
+    demoContainer.appendChild((function (){
+        const banner = document.createElement("div"); 
+        const letter = document.createElement("div");
+        letter.classList.add("mastery-letter"); 
+        letter.textContent = "DEMO"; 
+        banner.classList.add("assessment-mastery");
+        banner.style.backgroundColor = "#666666"; 
+        banner.appendChild(letter); 
+        return banner;
+    })());
+    demoContainer.appendChild((function (){
+        const scoreCont = document.createElement("div"); 
+        const score = document.createElement("span");
+        score.textContent = "0 / 4"; 
+        scoreCont.classList.add("assessment-score"); 
+        scoreCont.appendChild(score); 
+        return scoreCont;
+    })())
+    const addContainer = addAssignment.querySelector("div.assessment-thumbnail");
+    
+    // Add Assignment Button (Styling is totally up to yall)
+    addContainer.appendChild((function (){
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("viewBox", "0 0 100 100");
+        svg.setAttribute("xmlns", "https://www.w3.org/2000/svg");
+        svg.setAttribute("height", "50px");
+        svg.setAttribute("width", "50px");
+        svg.setAttribute("style", "position: absolute; bottom: 35%; right: 15%;");
+        //svg.style.position = "absolute";
+        //svg.style.bottom = "35%";
+        //svg.style.right = "15%";
+        const line1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line1.setAttribute("stroke", "#888888");
+        line1.setAttribute("stroke-width", "10px");
+        line1.setAttribute("stroke-linecap", "round");
+        const line2 = line1.cloneNode();
+        line1.setAttribute("x1", "50");
+        line1.setAttribute("y1", "20");
+        line1.setAttribute("x2", "50");
+        line1.setAttribute("y2", "80");
+        
+        line2.setAttribute("x1", "20");
+        line2.setAttribute("y1", "50");
+        line2.setAttribute("x2", "80");
+        line2.setAttribute("y2", "50");
+        svg.appendChild(line1);
+        svg.appendChild(line2);
+        return svg;
+    })())
+    addContainer.appendChild((function (){
+        const div = document.createElement("div");
+        div.style.padding = "8.5px";
+        return div;
+    })())
+}
+createDemoAssignment();
+
+// My soul.... If I were you, I'd minimize that function and never look back. Or find a way to make it look much neater.
+// If you can find away I will be forever in your debt.
+
+function addDemoAssignment(event) {
+    const demoAssignmentActive = demoAssignment.cloneNode(true);
+    demoAssignmentActive.addEventListener("click", removeDemoAssignment);
+    demoAssignmentActive.addEventListener("mouseenter", hoverEnterDemoAssignment);
+    demoAssignmentActive.addEventListener("mouseleave", hoverExitDemoAssignment);
+    event.currentTarget.parentElement.insertBefore(demoAssignmentActive, event.currentTarget);
+    event.currentTarget.parentElement.insertBefore(spacer.cloneNode(), event.currentTarget);
+    reset_scores.removeAttribute("hidden");
+    renderScores();
+}
+
+// For convenience, this is currently listening to the top li element. If accidentally removing assignments gets too annoying,
+// that can be changed.
+function removeDemoAssignment(event) {
+    event.currentTarget.remove();
+    document.querySelectorAll(".objective ul > :not(li.macalc-demo-score) + span").forEach(i => i.remove());
+    checkScoreValidity();
+    renderScores();
+}
+
+// Spacer (For consistency)
+const spacer = document.createElement("span");
+spacer.textContent = " ";
+
+// Interactivity
+function hoverEnterDemoAssignment(event) {
+    event.currentTarget.querySelector("img").style.filter = "brightness(0.9)";
+}
+function hoverExitDemoAssignment() {
+    event.currentTarget.querySelector("img").style.filter = "";
+}
 
 }
