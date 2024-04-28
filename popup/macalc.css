@@ -53,7 +53,6 @@ header h1 {
     font-size: 28pt;
     font-family: Tahoma;
     color: var(--text2);
-    font-family: "Open Sans", sans-serif;
     font-weight: normal;
     margin-top: 0;
     margin-bottom: 0;
@@ -200,16 +199,17 @@ label {
 }
 
 .button {
-    cursor: pointer;
-    background-color: #FFF;
-    margin-top: 30px;
-    width: 60px;
-    height: 30px;
-    align-content: center;
-    border: 1px solid #000;
-    border-radius: 2px;
-    box-shadow: 0 0 0px 0px var(--text);
-    transition: box-shadow 1s;
+   cursor: pointer;
+   background-color: #FFF;
+   margin: 30px 6px 0px 8px;
+   width: 100px;
+   height: 30px;
+   align-content: center;
+   border: 1px solid #000;
+   border-radius: 2px;
+   box-shadow: 0 0 0px 0px var(--text);
+   transition: box-shadow 1s;
+   align-self: center;
 }
 .button:hover {
     box-shadow: 0 0 5px 0px var(--text);
