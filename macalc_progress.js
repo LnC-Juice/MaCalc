@@ -155,6 +155,7 @@ reset_scores.addEventListener("click", () => {
         modifyAssessmentDisplays(i.parentElement.parentElement.querySelector(".assessment-mastery"),
             (scores[0]/scores[2]).toFixed(2)*100);
         i.removeAttribute("macalc-preserve-scores");
+        i.removeAttribute("macalc-modified");
     })
     document.querySelectorAll(".objective ul > li.macalc-demo-score").forEach(i => i.remove());
     document.querySelectorAll(".objective ul > span").forEach(i => i.remove());
