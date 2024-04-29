@@ -1,4 +1,4 @@
-//Copyright (C) 2024 LnC-Juice
+// Copyright (C) 2024 LnC-Juice
 
 {
 
