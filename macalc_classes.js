@@ -1,3 +1,5 @@
+// Copyright (C) 2024 LnC-Juice
+
 {
 
 const cat_path = "#content .objective-wrapper .objective";
