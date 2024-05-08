@@ -12,7 +12,7 @@
     "default_popup": "popup/macalc.html",
     "default_icon": "icons/macalc.png"
   },
-  
+
   "content_scripts": [
     {
       "matches": [
@@ -32,15 +32,14 @@
     }
   ],
 
-  "permissions": [
-    "storage"
-  ],
+  "permissions": ["storage"],
   "host_permissions": [
     "https://app.masteryconnect.com/student/classes/*/progress*",
     "https://app.masteryconnect.com/classrooms/*/students/*",
     "https://app.masteryconnect.com/student/classes"
-  ]
-    "browser_specific_settings": {
+  ],
+
+  "browser_specific_settings": {
     "gecko": {
       "id": "frin.juice@gmail.com"
     }
