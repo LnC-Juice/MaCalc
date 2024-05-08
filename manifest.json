@@ -1,9 +1,8 @@
 {
   "manifest_version": 3,
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsJ2ROjTmX/1sLy+4bEsqYByjBa9axQ2V6I+KusUpjiMaEYNlzKZBfOtKkimcOjPAb0h4T1ZAWMDBVlDF2DkMAoEmHjl96gsmEIH5ek/Qg9o5LnMm/qdzKHyVGAExc0bL7ZkNU0s9BPRff/CNS9bviVUeMYt/hZQYhU13S+TrhLCVnVwf56HaV5SFpWeuQj1x3s21PNdOJpx359BwawQxv9iXsdZu6e5L0ZdTI0vN6I/K3BR6rc7iesQk/QMWQc8MffjYwNvim2tmbtARl+bTozgjDllHhCjWOpThf/mOhjvjunTKBBYqYOEw++TZV1CsuR5MML0UMNofEI5yeekjCQIDAQAB",
   "name": "MaCalc",
   "description": "Calculate your Mastery Tracker averages",
-  "version": "0.7.0",
+  "version": "0.7.1",
 
   "icons": {
     "128": "icons/macalc.png"
@@ -41,4 +40,9 @@
     "https://app.masteryconnect.com/classrooms/*/students/*",
     "https://app.masteryconnect.com/student/classes"
   ]
+    "browser_specific_settings": {
+    "gecko": {
+      "id": "frin.juice@gmail.com"
+    }
+  }
 }
