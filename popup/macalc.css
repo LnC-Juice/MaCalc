@@ -7,6 +7,7 @@
         --text: rgb(41, 41, 41);
         --accent: rgb(57, 75, 88);
         --accent2: rgb(77, 95, 108);
+        --accent3: rgb(37, 55, 68);
         --text2: rgb(255, 255, 255);
         --background: rgb(255, 255, 255);
         --invert-bool: '';
@@ -21,6 +22,7 @@
         --text: rgb(255, 255, 255);
         --accent: rgb(57, 75, 88);
         --accent2: rgb(77, 95, 108);
+        --accent3: rgb(37, 55, 68);
         --text2: rgb(255, 255, 255);
         --background: rgb(30, 30, 30);
         --invert-bool: invert();
@@ -48,9 +50,9 @@ header {
 }
 header h1 {
     text-align: center;
-    font-size: 24pt;
+    font-size: 28pt;
+    font-family: Tahoma;
     color: var(--text2);
-    font-family: "Open Sans", sans-serif;
     font-weight: normal;
     margin-top: 0;
     margin-bottom: 0;
@@ -61,7 +63,9 @@ nav {
     width: calc(var(--width) - var(--padding2)*2);
     height: 20px;
 }
-
+#back {
+    cursor: pointer;
+}
 
 #content {
     height: 275px;
@@ -89,7 +93,7 @@ nav {
     display: none;
 }
 
-#classesbuttom {
+#classesbutton {
     cursor: pointer;
     width: 100px;
     height: 100px;
@@ -99,31 +103,29 @@ nav {
     box-shadow: 5px 5px 1em;
     transition: all 500ms;
     margin: var(--padding)
-
 }
-#classesbuttom p {
+#classesbutton:hover {
+    background-color: var(--accent2);
+    box-shadow: inset 0 0 0 0;
+    transition: all 300ms;
+}
+#classesbutton:active {
+    background-color: var(--accent3);
+    box-shadow: inset 0 0 1px 2px;
+    transition: all 100ms;
+}
+#classesbutton p {
     color: #FFFFFF;
+    font-size: 14pt;
+    font-family: Tahoma;
+    user-select: none;
 }
-#generalbuttom:active {
-    width: 100px;
-    height: 100px;
-    background-color: var(--accent2);
-    text-align: center;
-    align-content: center;
-    box-shadow: 0px 0px 0em;
-    transition: all 200ms;
+#classesbutton:active p {
+    font-size: 18px;
 }
 
 
-#classesbuttom:active {
-    width: 100px;
-    height: 100px;
-    background-color: var(--accent2);
-    text-align: center;
-    align-content: center;
-    box-shadow: 0px 0px 0em;
-    transition: all 200ms;
-}
+
 
 #classes.mainhide {
     display: none;
@@ -145,21 +147,28 @@ nav {
     background-color: var(--accent);
     text-align: center;
     align-content: center;
-    box-shadow: 5px 5px 1em;
+    box-shadow: 5px 5px 5px 0;
     transition: all 500ms;
     margin: var(--padding)
 }
-#progressbutton p {
-    color: #FFFFFF;
+#progressbutton:hover {
+    background-color: var(--accent2);
+    box-shadow: inset 0 0 0 0;
+    transition: all 300ms;
 }
 #progressbutton:active {
-    width: 100px;
-    height: 100px;
-    background-color: var(--accent2);
-    text-align: center;
-    align-content: center;
-    box-shadow: 0px 0px 0em;
-    transition: all 200ms;
+    background-color: var(--accent3);
+    box-shadow: inset 0 0 1px 2px;
+    transition: all 100ms;
+}
+#progressbutton p {
+    color: #ffffff;
+    font-size: 14pt;
+    font-family: Tahoma;
+    user-select: none;
+}
+#progressbutton:active p {
+    font-size: 18px;
 }
 
 #progress.mainhide {
@@ -179,6 +188,43 @@ label {
     color: var(--text);
     text-align: center;
     font-size: 14pt;
+}
+
+
+.setting {
+    display: grid;
+    justify-items: center;
+    margin: 10px 0;
+    font-family: Tahoma;
+}
+
+.button {
+   cursor: pointer;
+   background-color: #FFF;
+   margin: 30px 6px 0px 8px;
+   width: 100px;
+   height: 30px;
+   align-content: center;
+   border: 1px solid #000;
+   border-radius: 2px;
+   box-shadow: 0 0 0px 0px var(--text);
+   transition: box-shadow 1s;
+   align-self: center;
+}
+.button:hover {
+    box-shadow: 0 0 5px 0px var(--text);
+    transition: box-shadow 200ms;
+}
+.button:active {
+    background-color: #AAA;
+    box-shadow: 0 0 5px 2px var(--text);
+    transition: box-shadow 50ms;
+}
+.button p {
+    user-select: none;
+    text-align: center;
+    font-size: 15px;
+    font-family: Tahoma;
 }
 
 
@@ -206,5 +252,6 @@ span.contacts {
     padding: 0px 10px 0px 10px;
 }
 .contacts a {
-    color: var(--text)
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
 }

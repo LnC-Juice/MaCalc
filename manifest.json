@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "MaCalc",
   "description": "Calculate your Mastery Tracker averages",
-  "version": "0.6.2",
+  "version": "0.7.1",
 
   "icons": {
     "128": "icons/macalc.png"
@@ -19,7 +19,7 @@
         "https://app.masteryconnect.com/student/classes/*/progress*",
         "https://app.masteryconnect.com/classrooms/*/students/*"
       ],
-      "js": ["progress.js"],
+      "js": ["macalc_progress.js"],
       "all_frames": true
     },
     {
@@ -27,7 +27,7 @@
           "https://app.masteryconnect.com/student/classes",
           "https://app.masteryconnect.com/student/classes?*"
       ],
-      "js": ["classes.js"],
+      "js": ["macalc_classes.js"],
       "all_frames": true
     }
   ],

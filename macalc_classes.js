@@ -1,3 +1,16 @@
+// Adds support for Stadards Based Grading to Mastery Connect
+// Copyright (C) 2024 LnC-Juice
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
 {
 
 const cat_path = "#content .objective-wrapper .objective";
@@ -264,7 +277,7 @@ window.addEventListener('pageshow', function () {
 
             let barcontanier = document.createElement('div');
             barcontanier.style.border = '1px solid #000';
-            barcontanier.style.borderRadius = '10px';
+            barcontanier.style.borderRadius = '5px';
             barcontanier.style.width = '150px';
             barcontanier.style.height = '15px';
             barcontanier.style.overflow = 'hidden';
